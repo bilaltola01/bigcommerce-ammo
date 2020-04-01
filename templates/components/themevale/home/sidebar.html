@@ -1,0 +1,20 @@
+<nav>
+    <!-- All categories -->
+    {{> components/themevale/sidebar/side-all-categories}}
+    <!-- Shop by price -->
+   
+    {{#if shop_by_brand}}
+        {{> components/themevale/sidebar/side-shop-by-brand}}
+    {{/if}}
+
+    {{#if products.top_sellers}}
+        {{> components/products/top-sidebar products=products.top_sellers products_new=products.new}}
+    {{/if}}
+
+    {{#if products.featured}}
+        {{> components/products/feature-sidebar products=products.featured products_new=products.new}}
+    {{/if}}
+
+    {{> components/themevale/side-custom-block}}
+
+</nav>

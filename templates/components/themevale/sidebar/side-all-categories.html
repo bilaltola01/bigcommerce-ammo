@@ -1,0 +1,13 @@
+<div class="sidebarBlock navPages-container" id="sideAllCategories">
+    <h5 class="sidebarBlock-heading"><span>Categories</span><svg><use xlink:href="#icon-menu-mobile"/></svg></h5>
+    {{#if categories}}
+    <nav class="navPages">
+    <ul class="navPages-list{{#if theme_settings.navigation_design '!==' 'simple'}} navPages-list-depth-max{{/if}}">
+        {{#each categories}}
+            <li class="navPages-item {{#if children}}hasDropdown{{/if}}">
+                {{> components/common/navigation-list}}
+            </li>
+        {{/each}}
+    </ul>
+    {{/if}}
+</div>

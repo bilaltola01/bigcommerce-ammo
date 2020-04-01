@@ -1,0 +1,8 @@
+<div id="sideTopSellers1" class="sidebarBlock">
+   <h5 class="side-module-heading sidebarBlock-heading"><svg class="icon"><use xlink:href="#bolt"></use></svg><span>Flash Deals</span></h5>
+    {{#if settings.data_tag_enabled}}
+			{{> components/products/sidebar-carousel product_new_f=products_home products=products settings=../settings list="New Products"}}
+		{{else}}
+			{{> components/products/sidebar-carousel product_new_f=products_home products=products}}
+	{{/if}}
+</div>

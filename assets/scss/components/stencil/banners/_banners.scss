@@ -1,0 +1,32 @@
+// =============================================================================
+// Banners Component
+// =============================================================================
+
+
+// Banners
+// -----------------------------------------------------------------------------
+//
+// Purpose: Control the look and feel of the top and bottom site banners
+//
+// -----------------------------------------------------------------------------
+
+.banners {
+    // color: stencilColor("color-white");
+    // text-align: center;
+    // margin-bottom: 30px;
+    p:last-child {
+        margin-bottom: 0;
+    }
+
+    a {
+        // color: color("whites", "bright");
+    }
+}
+
+.banner {
+    @include grid-row;
+
+    + .banner {
+        margin-top: spacing("single");
+    }
+}

@@ -1,0 +1,282 @@
+// =============================================================================
+// ACCORDION (CSS)
+// =============================================================================
+
+
+.accordion {
+    border: none;
+    box-shadow: none;
+    border-radius: 3px;
+    list-style: none;
+    .navList {
+        margin-bottom: 0;
+    }
+    @media (max-width: 480px){
+        margin-bottom: 15px;
+    }
+}
+.faq-block{
+    .accordion-title {
+         &:before{
+            content: "\f107";
+            font: normal normal normal 22px/1 FontAwesome;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 9px;
+            color: #b4b4b4;
+            font-weight: 100;
+            transition: all 0.5s ease;
+
+        }
+    }
+}
+.accordion-title {
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 40px;
+    font-weight: 700;
+    padding: 0px 15px;
+    margin: 0;
+    text-transform: capitalize;
+    color: black;
+    position: relative;
+    background: #ffffff;
+    font-family: $fontFamily-headings;
+    transition: all 0.3s ease;
+    position: relative;
+    width: 100%;
+    display: block;
+    border-radius: 3px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+    -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+    -ms-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+    span{
+        position: relative;
+    } 
+    
+    &:focus,
+    &:hover {
+        color: stencilColor('color-textHeading');
+    }
+    .accordion-block.is-open & {
+        color: #000000;
+        background-color: #ffffff;
+        box-shadow: none;
+        border-bottom: 1px solid #efefef;
+        &:before{
+            color: #505050;
+            transform: rotate(180deg);
+            right: 8px;
+        }
+        
+    }
+    // @media (min-width: 1025px) {
+    //     &:hover {
+    //         color: #000000;
+    //         background-color: #ffffff;
+    //         &:before{
+    //             color: #505050;
+    //             transform: rotate(180deg);
+    //             right: 8px;
+    //         }
+        
+    //     }
+    // }
+}
+
+.accordion-content {
+    border: 0;
+    padding: 20px 20px;
+    background: #ffffff;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    p{
+        margin: 0;
+        &:first-child{
+            margin-bottom: 20px;
+        }
+    }
+    .form:only-child {
+        margin-bottom: 0;
+    }
+}
+
+.accordion-navigation {
+    border: none;
+    position: relative;
+    text-decoration: none;
+    margin-bottom: 15px;
+}
+
+
+
+// Accordion list
+// -----------------------------------------------------------------------------
+//
+// Purpose: Used as FAQ, for example: FAQ page.
+//
+// -----------------------------------------------------------------------------
+.accordion--List {
+    .accordion-block + .accordion-block {
+        margin-top: 15px;
+    }
+}
+
+
+// Accordion nav list
+// -----------------------------------------------------------------------------
+//
+// Purpose: Used as navigation menu, for example: faceted search menu.
+//
+// -----------------------------------------------------------------------------
+.accordion--navList {
+    @include breakpoint("medium") {
+        border: 0;
+    }
+
+    .sidebarBlock + & {
+        @include breakpoint("medium") {
+            margin-top: $accordion-navList-spacing;
+        }
+    }
+
+    .accordion-block {
+        @include breakpoint("medium") {
+            margin-top: $accordion-navList-spacing;
+        }
+    }
+
+    .accordion-content {
+        padding: 10px 15px;
+
+        .toggleLink {
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #323232;
+            margin-top: 5px;
+            display: inline-block;
+            .toggleLink-text {
+                font-size: inherit;
+                font-weight: inherit;
+                line-height: inherit;
+            }
+        }
+    }
+
+    .accordion-navigation {
+        @include breakpoint("medium") {
+            background-position: right 0 top 50%;
+            border: 0;
+        }
+    }
+
+    .accordion-title {
+        font-weight: normal;
+        padding: $accordion-navList-padding;
+        text-decoration: none;
+        text-transform: inherit;
+
+        @include breakpoint("medium") {
+            margin-bottom: 0;
+            margin-top: 0;
+            padding: 0;
+        }
+    }
+
+    .accordion-indicator {
+        fill: color("greys", "light");
+    }
+
+    .accordion-navigation-actions {
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .sidebarBlock {
+        .accordion-navigation-actions {
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+    }
+
+}
+
+
+// Accordion block
+// -----------------------------------------------------------------------------
+//
+// Purpose: Child blocks of an accordion
+//
+// -----------------------------------------------------------------------------
+.accordion-block{
+
+}
+.accordion-block:first-child {
+    margin-top: 0;
+
+    .accordion-navigation {
+    }
+}
+
+.accordion-block:last-child {
+    .accordion-navigation,
+    .accordion-content {
+        border-radius: 0 0 $accordion-borderRadius $accordion-borderRadius;
+    }
+
+    .accordion-navigation {
+        border-bottom-width: 0;
+
+        // scss-lint:disable NestingDepth
+        &.is-open {
+            border-bottom-width: 1px;
+            border-radius: 0;
+        }
+    }
+}
+
+// Accordion navigation actions
+// -----------------------------------------------------------------------------
+//
+// Purpose: Action links, usually aligned to the right of .accordion-navigation
+//
+// -----------------------------------------------------------------------------
+.accordion-navigation-actions {
+    position: absolute;
+    right: $accordion-navigation-paddingHorizontal;
+    top: $accordion-navigation-paddingVertical;
+
+    > a {
+        color: stencilColor("color-textSecondary");
+        vertical-align: top;
+
+        // scss-lint:disable NestingDepth
+        &:hover {
+            color: stencilColor("color-textSecondary--hover");
+        }
+        // scss-lint:enable NestingDepth
+    }
+}
+#facetedSearch{
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+}
+.form-minMaxRow .button {
+    text-transform: capitalize !important;
+}
+.facetedSearch-refineFilters{
+    > span{
+        padding: 15px;
+    }
+    > a{
+        padding: 15px;
+    }
+}

@@ -1,0 +1,27 @@
+{{#with theme_settings}}
+    {{#or show_accept_amex show_accept_discover show_accept_mastercard show_accept_paypal show_accept_visa show_accept_sage show_accept_wallet}}
+        <div class="payment-wrapper">
+            {{#if show_accept_visa}}
+                <img class="icon-visa" src="https://cdn11.bigcommerce.com/s-4fncb3zo7t/product_images/uploaded_images/payment-1.png" alt="payment-1">
+            {{/if}}
+            {{#if show_accept_mastercard}}
+                <img src="https://cdn11.bigcommerce.com/s-4fncb3zo7t/product_images/uploaded_images/payment-2.png" alt="payment-2">
+            {{/if}}
+            {{#if show_accept_amex}}
+                <img src="https://cdn11.bigcommerce.com/s-4fncb3zo7t/product_images/uploaded_images/payment-3.png" alt="payment-3">
+            {{/if}}
+            {{#if show_accept_discover}}
+                <img src="https://cdn11.bigcommerce.com/s-4fncb3zo7t/product_images/uploaded_images/payment-4.png" alt="payment-4">
+            {{/if}}
+            {{#if show_accept_paypal}}
+                <img src="https://cdn11.bigcommerce.com/s-4fncb3zo7t/product_images/uploaded_images/payment-5.png" alt="payment-5">
+            {{/if}}
+            {{#if show_accept_sage}}
+                <img src="https://cdn11.bigcommerce.com/s-4fncb3zo7t/product_images/uploaded_images/payment-6.png" alt="payment-6">
+            {{/if}}
+            {{#if show_accept_wallet}}
+                <img class="icon-paypal" src="https://cdn11.bigcommerce.com/s-4fncb3zo7t/product_images/uploaded_images/payment-7.png" alt="payment-7">
+            {{/if}}
+        </div>
+    {{/or}}
+{{/with}}

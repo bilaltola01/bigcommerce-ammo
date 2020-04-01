@@ -1,0 +1,1 @@
+{"components/cart/page-title":"<h1 class=\"page-heading cart-heading\" data-cart-page-title>\n    {{lang 'cart.label2'}}\n    <span class=\"label-quantity\">{{lang 'cart.quantity' quantity=cart.quantity}}</span>\n</h1>\n"}

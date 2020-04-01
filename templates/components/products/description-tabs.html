@@ -1,0 +1,91 @@
+<ul class="tabs themevale_tabs" data-tab>
+    <li class="tab is-active" id="tab-description-label">
+        <a class="tab-title" href="#tab-description">{{lang 'products.description'}}</a>
+    </li>
+    <li class="tab">
+        <a href="#tab-reviews" class="tab-title">{{lang 'products.reviews.link_to_review1' total=product.num_reviews}}</a>
+    </li>
+    {{#if product.warranty}}
+    <li class="tab">
+        <a class="tab-title" href="#tab-warranty">{{lang 'products.warranty'}}</a>
+    </li>
+    {{/if}}
+    <li class="tab">
+        <a href="#tab-shipping" class="tab-title">Shipping & Returns</a>
+    </li>
+</ul>
+<div class="tabs-contents">
+    <div class="tab-content is-active" id="tab-description">
+        <div class="toggle-title">
+            <a class="toggleLink is-open" data-collapsible href="#tabDescription-content">
+                <h4 class="page-heading">{{lang 'products.description'}}</h4>
+                <svg class="icon"><use xlink:href="#icon-keyboard-arrow-down"/></svg>
+                <span class="toggleLink-text toggleLink-text--on">
+                    {{lang 'products.reviews.hide'}}
+                </span>
+                <span class="toggleLink-text toggleLink-text--off">
+                    {{lang 'products.reviews.show'}}
+                </span>
+            </a>
+        </div>
+        <div class="toggle-content is-open" id="tabDescription-content" aria-hidden="false">
+            {{{product.description}}}
+            {{{snippet 'product_description'}}}
+        </div>
+    </div>
+    <div class="tab-content" id="tab-reviews">
+        <div class="toggle-title">
+            <a class="toggleLink" data-collapsible href="#tabreviews-content">
+                <h4 class="page-heading">Product Reviews</h4>
+                <svg class="icon"><use xlink:href="#icon-keyboard-arrow-down"/></svg>
+                <span class="toggleLink-text toggleLink-text--on">
+                    {{lang 'products.reviews.hide'}}
+                </span>
+                <span class="toggleLink-text toggleLink-text--off">
+                    {{lang 'products.reviews.show'}}
+                </span>
+            </a>
+        </div>
+        <div class="toggle-content" id="tabreviews-content" aria-hidden="false">
+             {{#if settings.show_product_reviews}}
+                {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+            {{/if}}
+        </div>
+    </div>
+    {{#if product.warranty}}
+        <div class="tab-content" id="tab-warranty">
+            <div class="toggle-title">
+                <a class="toggleLink" data-collapsible href="#tabWarranty-content">
+                    <h4 class="page-heading">{{lang 'products.warranty'}}</h4>
+                    <svg class="icon"><use xlink:href="#icon-keyboard-arrow-down"/></svg>
+                    <span class="toggleLink-text toggleLink-text--on">
+                        {{lang 'products.reviews.hide'}}
+                    </span>
+                    <span class="toggleLink-text toggleLink-text--off">
+                        {{lang 'products.reviews.show'}}
+                    </span>
+                </a>
+            </div>
+            <div class="toggle-content" id="tabWarranty-content" aria-hidden="false">
+                {{{product.warranty}}}
+            </div>
+        </div>
+    {{/if}}
+    <div class="tab-content" id="tab-shipping">
+        <div class="toggle-title">
+            <a class="toggleLink" data-collapsible href="#tabShipping-content">
+                <h4 class="page-heading">Shipping & Returns</h4>
+                <svg class="icon"><use xlink:href="#icon-keyboard-arrow-down"/></svg>
+                <span class="toggleLink-text toggleLink-text--on">
+                    {{lang 'products.reviews.hide'}}
+                </span>
+                <span class="toggleLink-text toggleLink-text--off">
+                    {{lang 'products.reviews.show'}}
+                </span>
+            </a>
+        </div>
+        <div class="toggle-content" id="tabShipping-content" aria-hidden="false">
+            {{> components/themevale/tabs/tab-shipping}}
+        </div>
+    </div>
+</div>

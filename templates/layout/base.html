@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{{ locale_name }}">
+    <head>
+        <title>{{ head.title }}</title>
+        {{{ resourceHints }}}
+        {{{ head.meta_tags }}}
+        {{{ head.config }}}
+        {{#block "head"}} {{/block}}
+
+        <link href="{{ head.favicon }}" rel="shortcut icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+        <script>
+            // Change document class from no-js to js so we can detect this in css
+            document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+        </script>
+
+        {{ getFontsCollection }}
+        {{{stylesheet '/assets/css/theme.css'}}}
+
+        {{{head.scripts}}}
+        {{{head.rsslinks}}}
+
+        {{inject 'themeSettings' theme_settings}}
+        {{inject 'genericError' (lang 'common.generic_error')}}
+        {{inject 'maintenanceMode' settings.maintenance}}
+        {{inject 'urls' urls}}
+        {{inject 'secureBaseUrl' settings.secure_base_url}}
+        {{inject 'cartId' cart_id}}
+        {{inject 'template' template}}
+        {{{snippet 'htmlhead'}}}
+    </head>
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WWR39CK');</script>
+<!-- End Google Tag Manager -->
+    <body class="page-type-{{page_type}}">
+        {{{snippet 'header'}}}
+        <div class="icons-svg-sprite">{{> components/common/icons/icon-defs }}</div>
+        <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
+
+        <!-- Sidebar mobile -->
+        <div class="themevale_Mobile themevale_MobileSidebar" id="sidebar-mobile">
+            <div class="themevale_close">
+                <a href="javascript:void(0)" class="close">×</a>
+            </div>
+            <div class="themevale_MobileContent"></div>
+        </div>
+        <!-- menu mobile  -->
+        <div class="themevale_Mobile themevale_MobileMenu" id="menu-mobile">
+            <div class="themevale_close">
+                <a href="javascript:void(0)" class="close">×</a>
+            </div>
+            <div class="themevale_MobileContent">
+                <div class="themevale_navPages-item" id="menu" data-menu>
+                    <div class="navPages-container">{{> components/common/navigation-menu}}</div> 
+                    
+                </div>
+            </div>
+        </div>
+        <!-- login mobile -->
+        <div class="themevale_Mobile themevale_MobileAccount" id="account-mobile">
+            <div class="themevale_close">
+                <a href="javascript:void(0)" class="close">×</a>
+            </div>
+            <div class="themevale_MobileContent">
+                {{#if page_type '!==' 'login'}}
+                <ul class="navPages">
+                        {{#if customer}}
+                            <li><a class="navPages-action" href="{{urls.account.index}}">{{lang 'Welcome back,'}} <strong>{{customer.name}}.</strong></a></li>
+                            <li><a class="navPages-action" href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a></li>
+                            {{#if settings.returns_enabled}}
+                            <li><a class="navPages-action" href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a></li>
+                            {{/if}}
+                            <li><a class="navPages-action" href="{{urls.account.inbox}}">{{lang 'account.mobile_nav.messages'}}</a></li>
+                            <li><a class="navPages-action" href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}</a></li>
+                            {{#if settings.show_wishlist}}
+                            <li><a class="navPages-action" href="{{urls.account.wishlists.all}}">{{lang 'account.mobile_nav.wishlists'}}</a></li>
+                            {{/if}}
+                            <li><a class="navPages-action" href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a></li>
+                            <li><a class="navPages-action" href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a></li>
+                            <li><a class="navPages-action" href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a></li>
+                        {{else}}
+                            <li class="navPages-item">
+                                <p class="navPage-subMenu-action navPages-action navPage-subMenu-title">
+                                    <span class="text">
+                                        <svg class="icon"><use xlink:href="#userr"/></svg>
+                                        Customer Login
+                                    </span>
+                                </p>
+                                <div class="login-content">
+                                    <p class="login-intro">{{lang 'login.new_customer.intro2' }}</p>
+                                    <form class="login-form form" action="{{settings.secure_base_url}}/login.php?action=check_login" method="post">
+                                        {{inject 'useValidEmail' (lang 'forms.validate.common.email_address')}}
+                                        {{inject 'enterPass' (lang 'forms.validate.common.password')}}
+                                        <div class="form-field">
+                                            <label class="form-label" for="login_email3">{{lang 'login.field_email'}}</label>
+                                            <input class="form-input" name="login_email" id="login_email3" type="email">
+                                        </div>
+                                        <div class="form-field">
+                                            <label class="form-label" for="login_pass3">{{lang 'login.field_password'}}</label>
+                                            <input class="form-input" id="login_pass3" type="password" name="login_pass">
+                                        </div>
+                                        <div class="form-actions">
+                                            <a class="forgot-password" href="{{urls.auth.forgot_password}}">{{lang 'login.forgot_password' }}</a>
+                                            <input type="submit" class="button button-transparent" value="{{lang 'login.button' }}">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="new-customer">
+                                    {{#if settings.account_creation_enabled}}
+                                        <p class="new-customer-intro">{{lang 'login.new_customer.intro3' }}</p>
+                                        <a class="button button--primary" href="{{urls.auth.create_account}}">{{lang 'login.create_account' }}</a>
+                                    {{/if}}
+                                </div>
+                            </li>
+                        {{/if}}
+                </ul>
+                {{/if}}
+            </div>
+        </div>
+
+        {{#and settings.privacy_cookie settings.is_eu_ip_address}}
+            {{> components/common/cookie}}
+        {{/and}}
+
+        {{> components/common/header }}
+        {{> components/common/body }}
+        {{> components/common/footer }}
+
+        <div class="bg-mobile"></div>
+
+
+        <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
+        <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
+        <script>
+            // Exported in app.js
+            window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
+        </script>
+        {{> components/themevale/themevale-megamenu }}
+        
+        {{{footer.scripts}}}
+        {{{snippet 'footer'}}}
+        <div id="halofilter"></div>
+        <script type="text/javascript">
+            var hloption = {
+            'site' : '00nwrptbipj6',
+            'limit' : 5,
+            };
+        </script>
+        <script type='text/javascript' src='https://api.themevaleapps.com/assets/halosearch.js'></script>
+        <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WWR39CK"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    </body>
+</html>

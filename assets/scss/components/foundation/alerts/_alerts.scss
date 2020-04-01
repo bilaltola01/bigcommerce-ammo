@@ -1,0 +1,43 @@
+// =============================================================================
+// ALERTS
+// =============================================================================
+
+.alertBox {
+    border-radius: $alert-radius;
+     border-style: none;
+    display: block;
+    font-size: 12px;
+    border-radius: 0;
+    padding: 8px 10px 8px 10px;
+    margin-top: 15px;
+    margin-bottom: 0;
+    color: #31708f;
+    font-weight: 400;
+    position: relative;
+    font-style: italic;
+    transition: opacity 300ms ease-out;
+    background-color: #e5e5e5;
+    border-color: none;
+}
+
+.alertBox-icon {
+    padding-right: 8px;
+    .icon {
+        @include square(25px);
+    }
+}
+
+.alertBox--info {
+    color: #31708f;
+    background-color: #e2f1f9;
+    svg{
+        fill: #31708f !important;
+    }
+    .alertBox-close {
+
+        // scss-lint:disable SelectorDepth, NestingDepth
+        svg {
+            fill: $color-infoLight;
+        }
+    }
+}

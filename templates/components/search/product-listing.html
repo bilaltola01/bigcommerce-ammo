@@ -1,0 +1,32 @@
+<div class="themevale_products-filter themevale_sidebar-mobile-wrapper">
+    <div class="item text-left">
+        <div class="themevale_sidebar-mobile">
+            <span class='text'>sidebar</span>
+            <svg class="icon"><use xlink:href='#sidebar'></use></svg>
+        </div>
+        <div class="view-mode-btn actionBar">
+            {{> components/common/paginator pagination.product_results total=product_results.total_products}}
+    </div>
+    </div>
+    <div class="themevale_categoryToolbar">
+    {{> components/products/filter sort=pagination.product_results.sort}}
+    </div>  
+</div>
+<form action="{{urls.compare}}" method='POST' {{#if settings.data_tag_enabled}} data-list-name="Search Results" {{/if}} data-product-compare>
+    {{#if theme_settings.product_list_display_mode '===' 'grid'}}
+        {{#if settings.data_tag_enabled}}
+             {{> components/products/grid products=product_results.products show_compare=product_results.show_compare theme_settings=theme_settings productsnew=../products.new event="list"}}
+        {{else}}
+             {{> components/products/grid products=product_results.products show_compare=product_results.show_compare theme_settings=theme_settings productsnew=../products.new}}
+        {{/if}}
+    {{else}}
+        {{#if settings.data_tag_enabled}}
+            {{> components/products/list products=product_results.products show_compare=product_results.show_compare theme_settings=theme_settings productsnew=../products.new event="list"}}
+        {{else}}
+            {{> components/products/list products=product_results.products show_compare=product_results.show_compare theme_settings=theme_settings productsnew=../products.new}}
+        {{/if}}
+    {{/if}}
+</form>
+<div class="product-pagination">
+    {{> components/common/paginator pagination.product_results}}
+</div>

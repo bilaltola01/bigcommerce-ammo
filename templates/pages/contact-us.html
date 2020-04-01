@@ -1,0 +1,56 @@
+{{#partial "page"}}
+<div class="page-heading-wrapper-2">
+    <div class="themevale_container">
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+        <h1 class="page-heading">{{ page.title }}</h1>
+    </div>
+</div>
+<main class="page">
+    <div class="themevale_container">
+        {{#if page.sub_pages}}
+            <nav class="navBar navBar--sub">
+                <ul class="navBar-section account-navigation">
+                    {{#each page.sub_pages}}
+                        <li class="navBar-item"><a class="navBar-action" href="{{url}}">{{title}}</a></li>
+                    {{/each}}
+                </ul>
+            </nav>
+        {{/if}}
+
+        <div class="page-content themevale_contact-us">
+            <div class="themevale_form">
+                {{#if forms.contact.success}}
+                    <div class="alertBox alertBox--info">
+                        <div class="alertBox-column alertBox-icon">
+                            <icon glyph="ic-success" class="icon" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg>
+                            </icon>
+                        </div>
+                        <p class="alertBox-column alertBox-message">
+                            <span>{{{lang 'forms.contact_us.successful' shopPath=urls.home}}}</span>
+                        </p>
+                    </div>
+                {{else}}
+                    <div class="desciption-page">{{{page.content}}}</div>
+                    {{> components/page/contact-us-form}}
+                {{/if}}
+            </div>
+             <div class="themevale_location">
+                <div class="themevale_map">
+                    {{> components/themevale/contact-us-map}}
+                </div>
+                <h3 class="title">Get in touch</h3>
+                <p>Looking for assistance on finding a product? Need help with an order? Just want to talk to some pretty awesome people?  Use one of the options below to get in touch with a Customer Service Representative here at Online Ammo.</p>
+                <div class="content">
+                    <div class="store-phone">Tel: {{settings.phone_number}}</div>
+                    <div class="store-email">Email: <a href="mailto:support@halothemes.com">support@online-ammo.com</a></div>
+                </div>
+                <div class="content">
+                    <div class="store-address">{{nl2br settings.address}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{{/partial}}
+{{> layout/base}}

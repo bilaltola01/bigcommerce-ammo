@@ -1,0 +1,15 @@
+<div class="themevale-section featured-home-product">
+    <div class="themevale_container">
+		<div class="themevale_page-heading-wrapper">
+            <h2 class="themevale_page-heading">{{lang 'products.featured' }}</h2>
+            <div class="view_all">
+            	<a href="#">{{lang 'common.view_all'}}<svg><use xlink:href="#icon-down-top"/></svg></a>
+        	</div>
+        </div>
+        {{#if settings.data_tag_enabled}}
+			{{> components/products/carousel product_new_f=products_home products=products settings=../settings list="Featured Products"}}
+		{{else}}
+			{{> components/products/carousel product_new_f=products_home products=products}}
+		{{/if}}
+    </div>
+</div>

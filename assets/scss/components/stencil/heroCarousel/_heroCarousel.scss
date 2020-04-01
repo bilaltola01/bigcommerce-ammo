@@ -1,0 +1,463 @@
+// HERO CAROUSEL
+// -----------------------------------------------------------------------------
+//
+// Purpose: Styles the hero carousel component, which basically adds extras to the
+// vendor slick carousel, to specifically display hero images.
+//
+// 1. Use object-fit on the image tag to keep aspect ratio and cover the space
+//    created by the outer div. The JS will detect browsers that do not support
+//    object-fit and instead copy the image src to a the background-image of the
+//    wrapper div and add the compat-object-fit class.
+//
+// 2. Visually overrides the top margin for '.body' defined in _body.scss.
+//    The '.body' top margin creates space between the header and page content.
+//    However, on the homepage, we want the carousel to be flush with the header.
+//
+// 3. Allows image to scale on large screens while preventing the top and bottom
+//    from becoming cut off.
+// -----------------------------------------------------------------------------
+
+
+/*=========================================
+=            www.themevale.com            =
+=========================================*/
+    
+    /*----------  0.Global style  --------*/
+        .heroCarousel {
+            margin-bottom: 30px;
+            @media (max-width: 768px){
+                margin-top: -15px;
+                margin-right: -15px;
+                margin-left: -15px;
+            }
+            .link {
+                vertical-align: top;
+                opacity: 0;
+                visibility: hidden;
+            }
+            &.slick-slider {
+                .link {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+            .slick-arrow {
+                width: 34px;
+                height: 58px;
+                fill: stencilColor("carousel-arrow-color");
+                stroke: stencilColor("carousel-arrow-color");
+                padding: 8px;
+                border: 1px solid stencilColor("carousel-border-arrow-color");
+                // border: 1px solid rgba(255,255,255,.85);
+                transition: all 0.3s ease;
+                background-color: stencilColor("carousel-arrow-background-color");
+                // background-color: rgba(255,255,255,.85);
+
+
+                &:before {
+                    content: none;
+                }
+                &.slick-prev {
+                    left: 0;
+                    border-top-right-radius: 3px;
+                    border-bottom-right-radius: 3px;
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                }
+                &.slick-next {
+                    right: 0;
+                    border-top-left-radius: 3px;
+                    border-bottom-left-radius: 3px;
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                }
+                &:hover{
+                    fill: stencilColor("carousel-arrow-color");
+                    stroke: stencilColor("carousel-arrow-color");
+                    border: 1px solid stencilColor("carousel-border-arrow-color-hover");
+                    background-color: stencilColor("carousel-arrow-background-color-hover");
+                }
+            }
+            .slick-dots {
+                bottom: 20px;
+                li {
+                    padding: 0;
+                    width: auto;
+                    height: auto;
+                    margin: 0 7px;
+                    button {
+                        width: 12px;
+                        height: 12px;
+                        opacity: 0.2;
+                        border: 1px solid stencilColor("carousel-dot-color");
+                        background-color: stencilColor("carousel-dot-color");
+                        transition: all 0.3s ease;
+                        &:before {
+                            content: none;
+                        }
+                    }
+                }
+                .slick-active {
+                    button {
+                        opacity: 0.6;
+                        background-color: stencilColor("carousel-dot-color-active");
+                    }
+                }
+                @media (min-width: 768px) and (max-width: 800px){
+                    position: relative;
+                    bottom: -10px;
+                } 
+                @media (max-width: 765px){
+                    position: relative;
+                    bottom: -10px;
+                }
+            }
+            .slick-slide {
+                .heroCarousel-title {
+                    visibility: hidden;
+                    animation-delay: 0ms;
+                    animation-name: fadeOutDown;
+                }
+                .heroCarousel-description {
+                    visibility: hidden;
+                    animation-delay: 0ms;
+                    animation-name: fadeOutDown;
+                }
+                .heroCarousel-action {
+                    visibility: hidden;
+                    animation-delay: 0ms;
+                    animation-name: fadeOutDown;
+                }
+            }
+            .slick-slide.slick-current {
+                .heroCarousel-title {
+                    visibility: visible;
+                    animation-delay: 100ms;
+                    animation-name: fadeInUp;
+                }
+                .heroCarousel-description {
+                    visibility: visible;
+                    animation-delay: 300ms;
+                    animation-name: fadeInUp;
+                }
+                .heroCarousel-action {
+                    visibility: visible;
+                    animation-delay: 500ms;
+                    animation-name: fadeInUp;
+                }
+            }
+            &.slick-dotted {
+                margin-bottom: 25px;
+            }
+            @media (max-width: 1024px) {
+                margin-bottom: 30px;
+                &.slick-dotted {
+                    @media (max-width: 768px){
+                        margin-bottom: 27px;;
+                    }
+                    @media (max-width: 480px){
+                        margin-bottom: 27px;
+                    }
+                }
+            }
+            &.themevale_container{
+                @media (max-width: 1024px) {
+                    padding:0;
+                }
+            } 
+        }
+
+        .heroCarousel:not(.slick-slider) {
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+            .heroCarousel-slide {
+                width: 100%;
+                display: inline-block;
+                vertical-align: top;
+                .heroCarousel-image {
+                    max-width: 100vw;
+                    
+                }
+            }
+        }
+    
+    /*----------  1.Main style  ----------*/
+        .heroCarousel-slide {
+            position: relative;
+            .heroCarousel-image-wrapper{
+                .visible-tab{
+                    display: none;
+                    @media (max-width: 768px){
+                        display: block;
+                        margin: 0;
+                        font-size: 26px;
+                        line-height: 1.2;
+                        font-weight: 700;
+                        letter-spacing: 0;
+                        text-transform: unset;
+                        font-family: $fontFamily-headings;
+                        color: stencilColor('carousel-title-color');
+                        top: 50%;
+                        left: 0;
+                        right: auto;
+                        z-index: 5;
+                        width: 480px;
+                        padding: 0 20px;
+                        position: absolute;
+                        transform: translateY(-50%);
+                        -ms-transform: translateY(-50%);
+                        -webkit-transform: translateY(-50%);
+                        -moz-transform: translateY(-50%);
+                        background-color: transparent;
+                    }
+                }
+
+            }
+        }
+        .heroCarousel-content-wrapper{
+            @media(max-width: 768px){
+                background: #ffffff;
+                box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+                -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+                -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+                -ms-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+            }
+        }
+        .heroCarousel-image {
+            z-index: 1;
+            width: 100%;
+            position: relative;
+            max-width: 100vw;
+            object-fit: none;
+            @media (max-width: 1024px){
+                object-fit: cover;
+            }
+        }
+
+        .heroCarousel-content {
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+            padding: 20px 0 30px 0;
+            @media (max-width: 768px){
+                text-align: center;
+                padding: 20px 0 20px 0;
+            }
+            .hidden-tab{
+                @media (max-width: 768px){
+                    display: none;
+                }
+            }
+            .heroCarousel-title {
+                margin: 0 0 17px 0;
+                font-size: 48px;
+                font-weight: 700;
+                line-height: 48px;
+                letter-spacing: 0;
+                text-transform: unset;
+                font-family: $fontFamily-headings;
+                color: stencilColor('carousel-title-color');
+                @media (max-width: 768px){
+                    color: #666666;
+                }
+            }
+            .heroCarousel-description {
+                color: stencilColor('carousel-description-color');
+                font-size: 12px;
+                line-height: 20px;
+                font-weight: 400;
+                letter-spacing: 0;
+                margin: 0 0 25px 0;
+                @media (max-width: 768px){
+                    color: #666666;
+                }
+                @media (max-width: 768px){
+                    margin: 0 0 10px 0;
+                }
+            }
+            .button {
+                margin: 0;
+                color: stencilColor('carousel-button-text-background-color');
+                background: stencilColor('carousel-button-background-color');
+                border: 2px solid stencilColor('carousel-button-border-background-color');
+                padding: 8px 24px;
+                line-height: 15px;
+                font-weight: 700;
+                font-size: 12px;
+                letter-spacing: 0;
+                @media (max-width: 1024px){
+                    padding: 8px 10px;
+                }
+                &:hover,
+                &:focus,
+                &:active {
+                    color: stencilColor('carousel-button-text-background-color-hover');
+                    background:stencilColor('carousel-button-background-color-hover');
+                    border:2px solid stencilColor('carousel-button-border-background-color-hover');
+                }
+                @media (max-width: 768px){
+                    color: #323232;
+                    background: #fff;
+                    border: 1px solid #979797;
+                }
+            }
+            @media (max-width: 1024px) {
+                padding: 20px 0 20px 0;
+            }
+        }
+        [aria-describedby="slick-slide00"]{
+            .heroCarousel-content{
+            }
+        } 
+        [aria-describedby="slick-slide01"]{
+            .heroCarousel-content,.heroCarousel-image-wrapper{
+                .heroCarousel-title {
+                    color: stencilColor('carousel2-title-color');
+                }
+            }
+        }
+        [aria-describedby="slick-slide02"]{
+            .heroCarousel-content{
+            }
+        }
+        @media (min-width: 769px) {
+            [aria-describedby="slick-slide00"],[aria-describedby="slick-slide01"],[aria-describedby="slick-slide02"] {
+                .heroCarousel-content {
+                    right: auto;
+                    left: 65px;
+                }
+            } 
+            .heroCarousel {
+                .slick-arrow,.slick-dots {
+                    opacity: 0;
+                }
+                &:hover {
+                    .slick-arrow,.slick-dots {
+                        opacity: 0.85;
+                    }
+                }
+            }
+        }
+
+        @media (min-width: 769px) {
+            .heroCarousel-content-wrapper {
+                top: 0;
+                left: 50%;
+                bottom: 0;
+                z-index: 5;
+                position: absolute;
+                transform: translate3d(-50%,0,0);
+                -ms-transform: translate3d(-50%,0,0);
+                -webkit-transform: translate3d(-50%,0,0);
+                -moz-transform: translate3d(-50%,0,0);
+                
+            }
+
+            .heroCarousel-content {
+                top: 50%;
+                left: 50%;
+                z-index: 5;
+                width: 480px;
+                padding: 0 15px;
+                position: absolute;
+                transform: translate3d(0,-50%,0);
+                -ms-transform: translate3d(0,-50%,0);
+                -webkit-transform: translate3d(0,-50%,0);
+                -moz-transform: translate3d(0,-50%,0);
+                background-color: transparent;
+            }
+        }
+
+    /*----------  2.Responsive  ----------*/
+        @media (max-width: 1450px) {
+            
+        }
+
+        @media (max-width: 1024px) {
+            .heroCarousel-content {
+                width: 100%;
+                .heroCarousel-title {
+                    font-size: 30px;
+                    line-height: 1.4;
+                    margin-bottom: 8px;
+                }
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .heroCarousel-content {
+                .heroCarousel-title {
+                    font-size: 26px;
+                    line-height: 1.2;
+                }
+                .heroCarousel-description {
+                    font-size: 12px;
+                    margin-bottom: 25px;
+                }
+                .button {
+                    min-width: 180px;
+                }
+            }
+            .heroCarousel-image-wrapper {
+                display: block;
+                position: relative;
+                overflow: hidden;
+                background-color: #fafafa;
+                &:before {
+                    content: "";
+                    display: block;
+                    padding-bottom: 40%;
+                }
+                > .heroCarousel-image {
+                    top: 50%;
+                    left: 50%;
+                    z-index: 2;
+                    width: auto;
+                    height: 100%;
+                    max-width: none;
+                    position: absolute;
+                    transform: translate(-50%, -50%);
+                }
+            }
+        }
+
+        @media (max-width: 480px) {
+            .heroCarousel-content {
+                .heroCarousel-title {
+                    font-size: 26px;
+                    line-height: 1.2;
+                }
+                .heroCarousel-description {
+                    font-size: 12px;
+                    margin-bottom: 25px;
+                }
+                .button {
+                    min-width: 180px;
+                }
+            }
+            .heroCarousel-image-wrapper {
+                display: block;
+                position: relative;
+                overflow: hidden;
+                background-color: #fafafa;
+                &:before {
+                    content: "";
+                    display: block;
+                    padding-bottom: 40%;
+                }
+                > .heroCarousel-image {
+                    top: 50%;
+                    left: 50%;
+                    z-index: 2;
+                    width: auto;
+                    height: 100%;
+                    max-width: none;
+                    position: absolute;
+                    transform: translate(-50%, -50%);
+                }
+            }
+        }
+
+/*=====  End of www.themevale.com  ======*/

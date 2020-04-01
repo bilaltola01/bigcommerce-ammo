@@ -1,0 +1,599 @@
+// =============================================================================
+// USER NAVIGATION (CSS)
+// =============================================================================
+//
+// 1. Corrects the spacing added by .navUser-or
+// 2. Can't use top: 50% because its container `.header` changes its height to
+//    100% when mobile menu is expanded
+// 3. Make the triangle for store credit dropdown centered
+// 4. Needs to be 100% so its dropdown can take full width in mobile viewport
+// 5. Needs to be lower than logo zIndex, otherwise, logo is not clickable
+// 6. Make the triangle for currency dropdown right aligned
+//
+// -----------------------------------------------------------------------------
+
+.navUser {
+    @include nav($style: "navBar", $wrapper: "nav");
+    display: none;
+    top: auto;
+    right: auto;
+    transform: none;
+    position: relative;
+    z-index: zIndex("high");
+    padding: 0 spacing("single");
+    .navUser--left {
+        float: left;
+    }
+    .navUser--right {
+        float: right;
+    }
+    @media (min-width: 1025px) {
+        display: block;
+        .navUser-action {
+            position: relative;
+            &:before {
+                left: 0;
+                bottom: 20px;
+                height: 1px;
+                width: 0;
+                content: "";
+                position: absolute;
+                background-color: #646464;
+                transition: all 0.3s ease;
+            }
+            &:hover {
+                &:before {
+                    width: 100%;
+                }
+            }
+        }
+        .navUser-action--quickSearch {
+            &:before {
+                content: none;
+            }
+            .text {
+                position: relative;
+                &:before {
+                    left: 0;
+                    bottom: -2px;
+                    height: 1px;
+                    width: 0;
+                    content: "";
+                    position: absolute;
+                    background-color: #646464;
+                    transition: all 0.3s ease;
+                }
+            }
+            &:hover {
+                .text:before {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.dropdown-menu {
+    outline: none;
+    background-color: stencilColor("navUser-dropdown-backgroundColor");
+    border: 1px solid stencilColor("navUser-dropdown-borderColor");
+    box-shadow: container("dropShadow");
+    position: absolute;
+
+    // scss-lint:disable NestingDepth
+    &.is-open {
+        &:before {
+            @include css-triangle(
+                $triangle-direction: "bottom",
+                $triangle-size: 10px,
+                $triangle-color: stencilColor("navUser-dropdown-borderColor")
+            );
+            bottom: 100%;
+            right: spacing("half");
+            position: absolute;
+        }
+
+        &:after {
+            @include css-triangle(
+                $triangle-direction: "bottom",
+                $triangle-size: 8px,
+                $triangle-color: stencilColor("navUser-dropdown-backgroundColor")
+            );
+            bottom: 100%;
+            right: spacing("half") + remCalc(2px);
+            position: absolute;
+        }
+    }
+}
+
+.dropdown-menu-account{
+    outline: none;
+    background-color: stencilColor("navUser-dropdown-backgroundColor");
+    box-shadow: container("dropShadow");
+    position: absolute;
+    display: none;
+    left: 0;
+    top: 33px;
+    list-style: none;
+    margin-left: 0;
+    position: absolute;
+    background: #e5e5e5;
+    font-size: 1rem;
+    height: auto;
+    width: 140px;
+    z-index: 89;
+    max-width: 200px;
+    @media (max-width: 1024px){
+        display: none !important;
+    }
+    .dropdown-menu-item {
+        margin: 0;
+        padding: 0;
+        border: 1px solid #e5e5e5;
+        background-color: #fafafa;
+        transition: all .3s ease;
+        &:hover{
+            background: #fff;
+        }
+        a{
+            padding:8px;
+            font-size: 12px;
+        }
+        +.dropdown-menu-item {
+            border-top: none;
+        }
+    }
+    
+}
+
+#cart-preview-dropdown2{
+    top: 55px;
+    > .loadingOverlay{
+        display: block !important;
+    }
+}
+.top-cart{
+    &.is-open{
+        .dropdown-cart {
+            display: block;
+        }
+    }
+    .dropdown-cart {
+        position: absolute;
+        right: 0px;
+        background: rgb(255, 255, 255);
+        border: 1px solid #b8b8b8;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+        -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+        -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+        -ms-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+        border-radius: 0;
+        border-radius: 3px;
+        width: auto;
+        min-width: 300px;
+        margin-top: 15px;
+        min-height: 94px;
+        padding: 0;
+        top: 30px;
+        z-index: 111;
+        display: none;
+        &.is-loading .loadingOverlay {
+            background: none;
+            padding: 25px;
+            position: relative;
+        }
+        > .loadingOverlay{
+            display: block !important;
+        }
+        @media (max-width: 1024px){
+            opacity: 0;
+            visibility: hidden;
+        }
+        .cart-additionalCheckoutButtons{
+            text-align: right;
+            .CheckoutButton{
+                text-align: center;
+                &:first-child {
+                    margin-top: 0;
+                    border: none;
+                    padding-bottom: 0;
+                    padding-top: 0;
+                    position: relative;
+                    border-radius: 0;
+                    p{
+                        position: unset;
+                        transform: none;
+                        padding: 0;
+                    }
+                }
+                .or-use-label{
+                }
+            }
+        }
+        .FloatRight div{
+            padding-right: 0;
+            float: none;
+        }
+        & .cart-preview-inner {
+            width: 598px;
+        }
+        & .cart-total-label {
+            text-align: right;
+            color: #000;
+            width: 63%;
+            strong{
+                font-weight: 500;
+                font-size: 12px;
+
+            }
+        }
+        & .cart-total-value {
+            font-size: 13px;
+            font-family: $fontFamily-sans;
+            font-weight: 600;
+            width: 37%;
+            color: #000000;
+            padding-right: 16px;
+        }
+        & .preview-cart-grand-total .cart-total-value {
+            font-size: 16px;
+        }
+        .preview-cart-titles {
+            min-height: 36px;
+            padding: 10px 20px 10px;
+            background: #fafafa;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            & > div {
+                font-family: $fontFamily-headings;
+                font-size: 12px;
+                font-weight: 500;
+                float: left;
+                text-transform: unset;
+                color: #505050;
+                &.item-info {
+                    width: 57%;
+                    text-align: left;
+                }
+                &.item-qty {
+                    width: 12%;
+                    text-align: center;
+                }
+                &.item-price {
+                    width: 14%;
+                    text-align: left;
+                }
+                &.item-total {
+                    width: 14%;
+                    text-align: right;
+                }
+            }
+        }
+    }
+}
+
+
+.navUser-action {
+    color: #505050;
+    font-weight: 400;
+    padding: 20px 0px;
+    text-decoration: none;
+    letter-spacing: 0;
+    text-transform: capitalize;
+    &:hover,
+    &.is-open {
+        color: #000000;
+
+    }
+    &.is-open {
+        color: #000000;
+
+      
+      
+    }
+
+    .icon {
+        @include square(8px);
+        margin: -2px 0 0 spacing("eighth");
+    }
+    .icon-2 {
+        @include square(16px);
+        margin: -1px 8px 0 0;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    svg {
+        fill: #b7b7b7;
+        stroke: #b7b7b7;
+        transition: all 0.15s ease;
+        &:hover{
+            fill: #b7b7b7;
+            stroke: #b7b7b7;
+        }
+    }
+}
+
+.navUser-item + .navUser-item {
+    margin-left: 30px;
+}
+
+
+.navUser-item--social {
+    .socialLinks {
+        .socialLinks-item {
+            margin: 0;
+            padding: 20px 8px;
+        }
+        .icon {
+            height: 14px;
+            &.icon--twitter {
+                transform: scale(1);
+            }
+        }
+    }
+}
+
+.navUser-item--cart {
+    .navUser-action {
+        @media (max-width: 580px){
+            padding:0;
+        }
+        &.is-open {
+            color: #000000;
+        }
+        &:before {
+            content: none;
+        }
+        @media (min-width: 1025px) {
+            .navUser-item-cartLabel {
+                position: relative;
+                &:before {
+                    left: 0;
+                    bottom: 0px;
+                    height: 1px;
+                    width: 0;
+                    // content: "";
+                    position: absolute;
+                    background-color: #646464;
+                    transition: all 0.3s ease;
+                }
+            }
+            &:hover {
+                .navUser-item-cartLabel:before {
+                    width: 100%;
+                }
+            }
+        }
+
+    }
+    
+}
+
+.navUser-item-cartLabel {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+    @media (max-width: 1024px){
+        font-size: 0;
+        display: none;
+    }
+}
+
+.navUser-item-cartIcon {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+    > i {
+        font-size: 28px;
+        &:hover{
+        }
+    }
+}
+
+.navUser-item--account {
+    .navUser-action {
+        display: inline-block;
+    }
+
+    .account-name {
+        padding-right: 0;
+        + .navUser-action {
+            padding-left: 0;
+        }
+    }
+}
+
+.navUser-or {
+    color: #505050;
+    cursor: default;
+    display: inline-block;
+    margin: 0;
+    padding: 0 4px;
+    position: relative;
+    z-index: 1;
+}
+
+// Quick search
+// -----------------------------------------------------------------------------
+//
+// 1. Overriding the inline styles from Foundation as this is a unique dropdown.
+//
+// -----------------------------------------------------------------------------
+
+.navUser-action--quickSearch {
+
+    &.is-open {
+        position: relative;
+
+        // scss-lint:disable NestingDepth
+        &:before {
+            @include css-triangle(
+                $triangle-direction: "bottom",
+                $triangle-size: 10px,
+                $triangle-color: color("greys", "lightest")
+            );
+            bottom: 0;
+            left: 50%;
+            position: absolute;
+            transform: translateX(-50%);
+        }
+    }
+}
+
+.dropdown--quickSearch {
+    padding: 0;
+    width: 100%;
+    max-width: 770px;
+    position: fixed;
+    background-color: transparent;
+    &.is-open {
+        left: 50%; // 1
+        outline: none;
+        transform: translateX(-50%);
+        z-index: zIndex("high");
+        @media (max-width: 1024px){
+            margin-top: 100px;
+            max-width: 100%;
+            width: calc(100% - 30px);
+        }
+    }
+
+    .form {
+        margin: auto;
+        width: 100%;
+    }
+
+    .form,
+    .form-field {
+        position: relative;
+        margin-bottom: 0;
+    }
+
+    .form-input {
+        border: none;
+        font-size: 12px;
+        border-radius: 0;
+        height: 38px;
+        padding: 10px 15px;
+        padding-right: 50px;
+    }
+    button[type="submit"] {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 5;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        // position: absolute;
+        background-color: transparent;
+        .text {
+            display: none;
+        }
+        .icon {
+            width: 50px;
+            height: 100%;
+            fill: stencilColor('color-textHeading');
+        }
+        &:hover, &:focus, &:active {
+            border: none;
+            // background-color: transparent;
+            .icon {
+               // fill: stencilColor('color-textHeading'); 
+            }
+        }
+    }
+    @media (min-width: 1025px) {
+        // top: 55px !important;
+    }
+    @media (max-width: 1024px) {
+        position: absolute;
+        .form-input {
+            line-height: 20px;
+            padding-right: 40px;
+        }
+        button[type="submit"] {
+            .icon {
+            }
+        }
+    }
+    @media (max-width: 767px) {
+        .form-input {
+            padding: 10px 15px;
+            padding-right: 40px;
+        }
+        button[type="submit"] {
+            .icon {
+            }
+        }
+    }
+}
+
+// Counter Pill
+// -----------------------------------------------------------------------------
+//
+// 1. Hardcoded intentionally for precise pixels.
+//
+// -----------------------------------------------------------------------------
+
+.countPill {
+    border-radius: 50%;
+    color: stencilColor('background-color-text-cart');
+    font-size: 10px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    width: 20px;
+    display: inline-block;
+    @media (max-width: 1024px){
+        top: -5px;
+        right: -6px;
+        position: absolute;
+    }
+    @media (max-width: 551px){
+        height: 18px;
+        line-height: 18px;
+        width: 18px;
+    }
+    @media (min-width: 551px) {
+        font-size: 12px;
+        width: 15px;
+        height: 15px;
+        line-height: 20px;
+    }
+}
+
+.countPill--positive,.cart-quantity {
+    top: -3px;
+    right: -6px;
+    z-index: 5;
+    display: inline-block;
+    @media (max-width: 1024px){
+        position: absolute;
+        background-color: #ef6c00;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 10px;
+        height: 18px;
+        line-height: 18px;
+        text-align: center;
+        width: 18px;
+    }
+    @media (min-width: 767px){
+        top: -6px;
+        right: -8px;
+    }
+    @media (min-width: 1025px) {
+        top: -6px;
+        right: -8px;
+    }
+}
+
+.countPill--alt {
+    background-color: color("greys", "lighter");
+    color: color("greys", "darker");
+}
+
+

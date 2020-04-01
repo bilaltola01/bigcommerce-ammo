@@ -1,0 +1,17 @@
+<div class="themevale-section newProduct" data-event="show more">
+    <div class="themevale_container">
+        <div class="themevale_page-heading-wrapper">
+            <h2 class="themevale_page-heading">{{lang 'products.new' }}</h2>
+            <div class="view_all">
+            	<a href="#">{{lang 'common.view_all'}}<svg><use xlink:href="#icon-down-top"/></svg></a>
+        	</div>
+        </div>
+        <ul class="productGrid productGrid--maxCol{{ columns }}" data-product-type="new" {{#if settings.data_tag_enabled}} data-list-name="New Products" {{/if}}>
+            {{#each products}}
+                <li class="product">
+                    {{>components/products/card settings=../settings theme_settings=../theme_settings customer=../customer show_rating=../settings.show_product_rating show_wishlist=../settings.show_wishlist productsnew=../products event="list" position=(add @index 1)}}
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>

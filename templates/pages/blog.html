@@ -1,0 +1,35 @@
+---
+products:
+    new:
+        limit: {{theme_settings.homepage_new_products_count}}
+    featured:
+        limit: {{theme_settings.homepage_featured_products_count}}
+    top_sellers:
+         limit: {{theme_settings.homepage_top_products_count}}
+blog:
+    posts:
+        limit: 5
+        pages: 3
+        summary: 376
+---
+{{#partial "page"}}
+<div class="page-heading-wrapper-2">
+    <div class="themevale_container">
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+        <h1 class="page-heading">{{ blog.name }}</h1>
+    </div>
+</div>
+<main class="page">
+    <div class="themevale_container">
+        <main class="page-content">
+            {{#each blog.posts}}
+                {{> components/blog/post post=this settings=../settings}}
+            {{/each}}
+
+            {{> components/common/paginator pagination.blog}}
+        </main>
+       
+    </div>
+</main>
+{{/partial}}
+{{> layout/base}}

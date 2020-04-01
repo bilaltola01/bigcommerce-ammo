@@ -1,0 +1,879 @@
+// =============================================================================
+// BODY (CSS)
+//
+// 1. Header is fixed on small screens, use the content body to create the whitespace
+//    between it and the header on all situations. If you change the spacing here,
+//    please update .heroCarousel too.
+//
+// =============================================================================
+
+/*==========================================
+=            Defaul Bigcommerce            =
+==========================================*/
+    .page {
+        @include grid-row(
+            $behavior: nest
+        );
+    }
+
+    .page-content,
+    .page-content--full {
+        width: 100%;
+        float: left;
+        padding-left: 0;
+        padding-right: 0;
+
+        @media (min-width: 1025px) {
+            // padding-left: 15px;
+            // padding-right: 15px;
+        }
+    }
+    .page-type-page,.page-type-sitemap{
+        .page-content{
+            padding: 15px;
+            background: #ffffff;
+        }
+    }
+
+    .page-content--centered {
+
+        @include breakpoint("medium") {
+            @include grid-column(
+                $columns: 8,
+                $center: true
+            );
+            padding-left: 0;
+            padding-right: 0;
+            @media (min-width: 1025px) {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
+    }
+
+    .page-content--textCenter {
+        text-align: center;
+    }
+
+    .page-sidebar {
+        display: none;
+        @media (min-width: 1025px) {
+            padding-left: 15px;
+            padding-right: 15px;
+            // width: 224px;
+            width: 20%;
+            float: left;
+            display: block;
+            + .page-content {
+                padding-left: 15px;
+                padding-right: 15px;
+                width: calc(100% - 20%);
+                float: left;
+            }
+        }
+    }
+
+    .alert {
+        padding: .75rem 1.25rem;
+        border: 1px solid transparent;
+        border-radius: .25rem;
+    }
+
+    .alert-warning {
+        color: #856404;
+        background-color: #fff3cd;
+        border-color: #ffeeba;
+        p {
+            margin: 0;
+        }
+    }
+
+    .text-left {
+        text-align: left;
+    }
+    .text-right {
+        text-align: right;
+    }
+    .text-center {
+        text-align: center;
+    }
+    .themevale_purchase {
+        display: none;
+        @media (min-width: 768px) {
+            top: auto;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            text-align: right;
+            opacity: 1;
+            z-index: 999;
+            display: block;
+            position: fixed;
+            padding: 15px 30px;
+            visibility: visible;
+            transition: all 0.5s ease;
+            box-shadow: 0 -1px 1px rgba(0,0,0,0.12);
+            background-color: rgba(255,255,255,0.9);
+        }
+        &.hidden {
+            bottom: -70px;
+            opacity: 0;
+            visibility: hidden;
+        }
+        .group-button {
+            text-align: center;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .button {
+            font-size: 12px;
+            border-radius: 36px;
+            font-weight: 400;
+            text-transform: none;
+            margin-bottom: 0;
+            line-height: 20px;
+            border: 1px solid stencilColor('button--primary-borderColor');
+            + .button {
+                margin-left: 15px;
+            }
+            &:hover,
+            &:focus,
+            &:active {
+                border: 1px solid stencilColor('button--primary-borderColorHover');
+            }
+            &.button-transparent {
+                border: 1px solid stencilColor('button--default-borderColor');
+                &:hover,
+                &:focus,
+                &:active {
+                    border: 1px solid stencilColor('button--default-borderColorHover');
+                }
+            }
+        }
+    }
+
+/*=====  End of Defaul Bigcommerce  ======*/
+
+
+
+/*=========================================
+=            www.themevale.com            =
+=========================================*/
+
+    /*--------  1.0 Global style  -------*/
+        body {
+            padding-top: 0;
+            color: stencilColor('color-textBase');
+            // font-size: $body-fontSize;
+            font-size: 12px;
+            font-weight: $body-font-weight;
+            line-height: 20px;
+            position: relative;
+            overflow-x: hidden;
+            font-family: $fontFamily-sans;
+            -wenkit-font-smoothing: subpixel-antialiased;
+            background-color: #f5f5f5;
+            &.has-newsletter {
+                overflow: hidden;
+            }
+        }
+        img.lazyload {
+            width: 50px;
+            height: 50px;
+            &.lazyloaded {
+                width: auto;
+                height: auto;
+            }
+        }
+        .themevale_loading {
+            overflow:hidden;
+            .themevale_loadingpage{
+                opacity:1;
+                visibility:visible;
+
+            }
+        }
+        .themevale_loadingpage {
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            z-index:1000;
+            opacity:0;
+            visibility:hidden;
+            background-color:#fff;
+            transition:all .3s ease;
+            >img {
+                top:50%;
+                left:50%;
+                width:50px;
+                height:50px;
+                position:absolute;
+                transform:translate(-50%,-50%);
+            }
+        }
+        a {
+            position: relative;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            &:hover,
+            &:focus,
+            &:active {
+                outline: none;
+                text-decoration: none;
+            }
+        }
+
+        button, .button {
+            font-size: 12px;
+            font-weight: 700;
+            padding: 5px 15px;
+            line-height: 20px;
+            border-radius: 3px;
+            letter-spacing: 0;
+            text-transform: uppercase;
+            color: stencilColor('button--default-color');
+            // border: 1px solid stencilColor('button--default-borderColor');
+            border: none;
+            background: -moz-linear-gradient(top, stencilColor('button--default-backgroundColor') 0, stencilColor('button--default-backgroundColor1') 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0, stencilColor('button--default-backgroundColor')), color-stop(100%, stencilColor('button--default-backgroundColor1')));
+            background: -webkit-linear-gradient(top, stencilColor('button--default-backgroundColor') 0, stencilColor('button--default-backgroundColor1') 100%);
+            background: -o-linear-gradient(top, stencilColor('button--default-backgroundColor') 0, stencilColor('button--default-backgroundColor1') 100%);
+            background: -ms-linear-gradient(top, stencilColor('button--default-backgroundColor') 0, stencilColor('button--default-backgroundColor1') 100%);
+            background: linear-gradient(to bottom, stencilColor('button--default-backgroundColor') 0, stencilColor('button--default-backgroundColor1') 100%);
+            transition: all 0.3s ease;
+            font-family: $fontFamily-headings;
+            @media (min-width: 1025px) {
+                &:hover, &:focus, &:active {
+                    color: stencilColor('button--default-colorHover');
+                    // border: 1px solid stencilColor('button--default-borderColorHover');
+                    border: none;
+                    background: -moz-linear-gradient(top, stencilColor('button--default-backgroundColorHover') 0, stencilColor('button--default-backgroundColorHover1') 100%);
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, stencilColor('button--default-backgroundColorHover')), color-stop(100%, stencilColor('button--default-backgroundColorHover1')));
+                    background: -webkit-linear-gradient(top, stencilColor('button--default-backgroundColorHover') 0, stencilColor('button--default-backgroundColorHover1') 100%);
+                    background: -o-linear-gradient(top, stencilColor('button--default-backgroundColorHover') 0, stencilColor('button--default-backgroundColorHover1') 100%);
+                    background: -ms-linear-gradient(top, stencilColor('button--default-backgroundColorHover') 0, stencilColor('button--default-backgroundColorHover1') 100%);
+                    background: linear-gradient(to bottom, stencilColor('button--default-backgroundColorHover') 0, stencilColor('button--default-backgroundColorHover1') 100%);
+                    svg {
+                        fill: stencilColor('button--default-colorHover');
+                    }
+                }
+            }
+            &.button--primary {
+                color: stencilColor('button--primary-color');
+                // border: 1px solid stencilColor('button--primary-borderColor');
+                border: none;
+                background: -moz-linear-gradient(top, stencilColor('button--primary-backgroundColor') 0, stencilColor('button--primary-backgroundColor1') 100%);
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0, stencilColor('button--primary-backgroundColor')), color-stop(100%, stencilColor('button--primary-backgroundColor1')));
+                background: -webkit-linear-gradient(top, stencilColor('button--primary-backgroundColor') 0, stencilColor('button--primary-backgroundColor1') 100%);
+                background: -o-linear-gradient(top, stencilColor('button--primary-backgroundColor') 0, stencilColor('button--primary-backgroundColor1') 100%);
+                background: -ms-linear-gradient(top, stencilColor('button--primary-backgroundColor') 0, stencilColor('button--primary-backgroundColor1') 100%);
+                background: linear-gradient(to bottom, stencilColor('button--primary-backgroundColor') 0, stencilColor('button--primary-backgroundColor1') 100%);
+                &:hover, &:focus, &:active {
+                    color: stencilColor('button--primary-colorHover');
+                    // border: 1px solid stencilColor('button--primary-borderColorHover');
+                    border: none;
+                    background: -moz-linear-gradient(top, stencilColor('button--primary-backgroundColorHover') 0, stencilColor('button--primary-backgroundColorHover1') 100%);
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, stencilColor('button--primary-backgroundColorHover')), color-stop(100%, stencilColor('button--primary-backgroundColorHover1')));
+                    background: -webkit-linear-gradient(top, stencilColor('button--primary-backgroundColorHover') 0, stencilColor('button--primary-backgroundColorHover1') 100%);
+                    background: -o-linear-gradient(top, stencilColor('button--primary-backgroundColorHover') 0, stencilColor('button--primary-backgroundColorHover1') 100%);
+                    background: -ms-linear-gradient(top, stencilColor('button--primary-backgroundColorHover') 0, stencilColor('button--primary-backgroundColorHover1') 100%);
+                    background: linear-gradient(to bottom, stencilColor('button--primary-backgroundColorHover') 0, stencilColor('button--primary-backgroundColorHover1') 100%);
+                }
+            }
+            &.btn-checkout {
+                color: stencilColor('button--checkout-color');
+                // border: 1px solid stencilColor('button--checkout-borderColor');
+                border: none;
+                background: -moz-linear-gradient(top, stencilColor('button--checkout-backgroundColor') 0, stencilColor('button--checkout-backgroundColor1') 100%);
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0, stencilColor('button--checkout-backgroundColor')), color-stop(100%, stencilColor('button--checkout-backgroundColor1')));
+                background: -webkit-linear-gradient(top, stencilColor('button--checkout-backgroundColor') 0, stencilColor('button--checkout-backgroundColor1') 100%);
+                background: -o-linear-gradient(top, stencilColor('button--checkout-backgroundColor') 0, stencilColor('button--checkout-backgroundColor1') 100%);
+                background: -ms-linear-gradient(top, stencilColor('button--checkout-backgroundColor') 0, stencilColor('button--checkout-backgroundColor1') 100%);
+                background: linear-gradient(to bottom, stencilColor('button--checkout-backgroundColor') 0, stencilColor('button--checkout-backgroundColor1') 100%);
+                &:hover, &:focus, &:active {
+                    color: stencilColor('button--checkout-colorHover');
+                    // border: 1px solid stencilColor('button--checkout-borderColorHover');
+                    border: none;
+                    background: -moz-linear-gradient(top, stencilColor('button--checkout-backgroundColorHover') 0, stencilColor('button--checkout-backgroundColorHover1') 100%);
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, stencilColor('button--checkout-backgroundColorHover')), color-stop(100%, stencilColor('button--checkout-backgroundColorHover1')));
+                    background: -webkit-linear-gradient(top, stencilColor('button--checkout-backgroundColorHover') 0, stencilColor('button--checkout-backgroundColorHover1') 100%);
+                    background: -o-linear-gradient(top, stencilColor('button--checkout-backgroundColorHover') 0, stencilColor('button--checkout-backgroundColorHover1') 100%);
+                    background: -ms-linear-gradient(top, stencilColor('button--checkout-backgroundColorHover') 0, stencilColor('button--checkout-backgroundColorHover1') 100%);
+                    background: linear-gradient(to bottom, stencilColor('button--checkout-backgroundColorHover') 0, stencilColor('button--checkout-backgroundColorHover1') 100%);
+                }
+            }
+            &.themevale_btnATC {
+                color: stencilColor('button--btnATC-color');
+                border: 1px solid stencilColor('button--btnATC-borderColor');
+                background: -moz-linear-gradient(top, stencilColor('button--btnATC-backgroundColor') 0, stencilColor('button--btnATC-backgroundColor1') 100%);
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0, stencilColor('button--btnATC-backgroundColor')), color-stop(100%, stencilColor('button--btnATC-backgroundColor1')));
+                background: -webkit-linear-gradient(top, stencilColor('button--btnATC-backgroundColor') 0, stencilColor('button--btnATC-backgroundColor1') 100%);
+                background: -o-linear-gradient(top, stencilColor('button--btnATC-backgroundColor') 0, stencilColor('button--btnATC-backgroundColor1') 100%);
+                background: -ms-linear-gradient(top, stencilColor('button--btnATC-backgroundColor') 0, stencilColor('button--btnATC-backgroundColor1') 100%);
+                background: linear-gradient(to bottom, stencilColor('button--btnATC-backgroundColor') 0, stencilColor('button--btnATC-backgroundColor1') 100%);
+                @media (max-width: 480px){
+                    padding: 5px 0px;
+                }
+                &:hover, &:focus, &:active {
+                    color: stencilColor('button--btnATC-colorHover');
+                    border: 1px solid stencilColor('button--btnATC-borderColorHover');
+                    background: -moz-linear-gradient(top, stencilColor('button--btnATC-backgroundColorHover') 0, stencilColor('button--btnATC-backgroundColorHover1') 100%);
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, stencilColor('button--btnATC-backgroundColorHover')), color-stop(100%, stencilColor('button--btnATC-backgroundColorHover1')));
+                    background: -webkit-linear-gradient(top, stencilColor('button--btnATC-backgroundColorHover') 0, stencilColor('button--btnATC-backgroundColorHover1') 100%);
+                    background: -o-linear-gradient(top, stencilColor('button--btnATC-backgroundColorHover') 0, stencilColor('button--btnATC-backgroundColorHover1') 100%);
+                    background: -ms-linear-gradient(top, stencilColor('button--btnATC-backgroundColorHover') 0, stencilColor('button--btnATC-backgroundColorHover1') 100%);
+                    background: linear-gradient(to bottom, stencilColor('button--btnATC-backgroundColorHover') 0, stencilColor('button--btnATC-backgroundColorHover1') 100%);
+                }
+                &.out_of_stock {
+                    background: stencilColor('button--out-of-stock-backgroundColor');
+                    color: stencilColor('button--out-of-stock-color');
+                    border: 1px solid stencilColor('button--out-of-stock-borderColor');
+                    &:hover{
+                        background: stencilColor('button--out-of-stock-backgroundColorHover');
+                        color: stencilColor('button--out-of-stock-colorHover');
+                        border: 1px solid stencilColor('button--out-of-stock-borderColorHover');
+                    }
+                }
+            }
+            &.themevale_product_btnATC {
+                color: stencilColor('button--btnATC-colorHover');
+                border: 1px solid stencilColor('button--btnATC-borderColorHover');
+                background: -moz-linear-gradient(top, stencilColor('button--btnATC-backgroundColorHover') 0, stencilColor('button--btnATC-backgroundColorHover1') 100%);
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0, stencilColor('button--btnATC-backgroundColorHover')), color-stop(100%, stencilColor('button--btnATC-backgroundColorHover1')));
+                background: -webkit-linear-gradient(top, stencilColor('button--btnATC-backgroundColorHover') 0, stencilColor('button--btnATC-backgroundColorHover1') 100%);
+                background: -o-linear-gradient(top, stencilColor('button--btnATC-backgroundColorHover') 0, stencilColor('button--btnATC-backgroundColorHover1') 100%);
+                background: -ms-linear-gradient(top, stencilColor('button--btnATC-backgroundColorHover') 0, stencilColor('button--btnATC-backgroundColorHover1') 100%);
+                background: linear-gradient(to bottom, stencilColor('button--btnATC-backgroundColorHover') 0, stencilColor('button--btnATC-backgroundColorHover1') 100%);
+                @media (max-width: 480px){
+                    padding: 5px 10px;
+                }
+                &:hover, &:focus, &:active {
+                    color: stencilColor('button--btnATC-color');
+                    border: 1px solid stencilColor('button--btnATC-borderColor');
+                    background: -moz-linear-gradient(top, stencilColor('button--btnATC-backgroundColor') 0, stencilColor('button--btnATC-backgroundColor1') 100%);
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, stencilColor('button--btnATC-backgroundColor')), color-stop(100%, stencilColor('button--btnATC-backgroundColor1')));
+                    background: -webkit-linear-gradient(top, stencilColor('button--btnATC-backgroundColor') 0, stencilColor('button--btnATC-backgroundColor1') 100%);
+                    background: -o-linear-gradient(top, stencilColor('button--btnATC-backgroundColor') 0, stencilColor('button--btnATC-backgroundColor1') 100%);
+                    background: -ms-linear-gradient(top, stencilColor('button--btnATC-backgroundColor') 0, stencilColor('button--btnATC-backgroundColor1') 100%);
+                    background: linear-gradient(to bottom, stencilColor('button--btnATC-backgroundColor') 0, stencilColor('button--btnATC-backgroundColor1') 100%);
+                }
+            }
+            &.button-transparent {
+                color: stencilColor('button--transparent-color');
+                border: 1px solid stencilColor('button--transparent-borderColor');
+                background: -moz-linear-gradient(top, stencilColor('button--transparent-backgroundColor') 0, stencilColor('button--transparent-backgroundColor1') 100%);
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0, stencilColor('button--transparent-backgroundColor')), color-stop(100%, stencilColor('button--transparent-backgroundColor1')));
+                background: -webkit-linear-gradient(top, stencilColor('button--transparent-backgroundColor') 0, stencilColor('button--transparent-backgroundColor1') 100%);
+                background: -o-linear-gradient(top, stencilColor('button--transparent-backgroundColor') 0, stencilColor('button--transparent-backgroundColor1') 100%);
+                background: -ms-linear-gradient(top, stencilColor('button--transparent-backgroundColor') 0, stencilColor('button--transparent-backgroundColor1') 100%);
+                background: linear-gradient(to bottom, stencilColor('button--transparent-backgroundColor') 0, stencilColor('button--transparent-backgroundColor1') 100%);
+                svg {
+                    fill: stencilColor('button--transparent-color');
+                }
+                @media (min-width: 1025px) {
+                    &:hover, &:focus, &:active {
+                        color: stencilColor('button--transparent-colorHover');
+                        border: 1px solid stencilColor('button--transparent-borderColorHover');
+                        background-color: stencilColor('button--transparent-backgroundColorHover');
+                        background: -moz-linear-gradient(top, stencilColor('button--transparent-backgroundColorHover') 0, stencilColor('button--transparent-backgroundColorHover1') 100%);
+                        background: -webkit-gradient(linear, left top, left bottom, color-stop(0, stencilColor('button--transparent-backgroundColorHover')), color-stop(100%, stencilColor('button--transparent-backgroundColorHover1')));
+                        background: -webkit-linear-gradient(top, stencilColor('button--transparent-backgroundColorHover') 0, stencilColor('button--transparent-backgroundColorHover1') 100%);
+                        background: -o-linear-gradient(top, stencilColor('button--transparent-backgroundColorHover') 0, stencilColor('button--transparent-backgroundColorHover1') 100%);
+                        background: -ms-linear-gradient(top, stencilColor('button--transparent-backgroundColorHover') 0, stencilColor('button--transparent-backgroundColorHover1') 100%);
+                        background: linear-gradient(to bottom, stencilColor('button--transparent-backgroundColorHover') 0, stencilColor('button--transparent-backgroundColorHover1') 100%);
+                        svg {
+                            fill: stencilColor('button--transparent-colorHover');
+                        }
+                    }
+                }
+            }
+            svg {
+                fill: stencilColor('button--default-color');
+            }
+            .icon + .text {
+                margin-left: 5px;
+            }
+            &.big-button {
+                min-width: 180px;
+                @media (min-width: 601px) {
+                    min-width: 200px;
+                }
+                @media (min-width: 1025px) {
+                    min-width: 280px;
+                }
+            }
+            &[disabled],
+            &[disabled]:hover,
+            &[disabled]:focus,
+            &[disabled]:active {
+                opacity: 0.7;
+                color: stencilColor('button--primary-color');
+                border: 1px solid stencilColor('button--primary-borderColor');
+                background-color: stencilColor('button--primary-backgroundColor');
+            }
+            
+            @media (min-width: 415px) {
+                font-size: 12px;
+                line-height: 24px;
+            }
+            
+            @media (max-width: 330px){
+                letter-spacing: 0;
+            }
+        }
+        .table {
+            thead tr th, thead tr td {
+                font-weight: 600;
+            }
+            .table-thead {
+                font-size: $body-fontSize;
+                font-weight: 600;
+                font-family: $fontFamily-headings;
+                color: stencilColor('color-textHeading');
+            }
+        }
+
+        .page-heading {
+            font-weight: 600;
+            font-family: $fontFamily-headings;
+        }
+
+        .body {
+            .page {
+                margin: 0;
+                padding: 0px 0 38px;
+                @media (max-width: 1024px){
+                    padding: 15px 0 38px;
+                }
+                @media (min-width: 1025px) {
+                    padding: 0px 0 38px;
+                }
+
+            }
+        }
+        .form-label {
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 20px;
+            font-family: $fontFamily-headings;
+            color: stencilColor('color-textHeading');
+            span{
+                color:#e3594d;
+                margin-left: 3px;
+            }
+            > small {
+                color: #8c8c8c;
+                font-size: 11px;
+                font-weight: 400;
+                text-transform: capitalize;
+                float: right;
+                margin-top: 1px;
+                font-family: $fontFamily-headings;
+                font-style: italic;
+                &:before {
+                    // content: "*";
+                    color: #e95144;
+                    font-size: $body-fontSize;
+                }
+            }
+        }
+
+        .form-input,
+        .form-select {
+            height: 36px;
+            padding: 10px 15px;
+            line-height: 20px;
+            border-radius: 3px;
+            border: none;
+            border: 1px solid #c8c8c8;
+            font-size: 12px;
+            line-height: 14px;
+            background-position: right 0px center !important;
+            background-size: 34px;
+        }
+
+        textarea.form-input {
+            resize: none;
+        }
+
+        .form-field--submit {
+            margin-bottom: 0;
+        }
+
+        .modal {
+            .modal-close {
+                padding: 0;
+                color: #000000;
+                font-size: 26px;
+                font-weight: 300;
+                position: absolute;
+                text-align: center;
+                text-decoration: none;
+                z-index: 50;
+                line-height: 35px;
+                height: 2.5rem;
+                width: 2.5rem;
+                top: 8px;
+                > span {
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                    line-height: inherit;
+                }
+                @media (max-width: 480px){
+                    top: 2px;
+                }
+            }
+            .modal-header {
+                padding: 10px 40px;
+                border-bottom: 1px solid #dddddd;
+                background: #f5f5f5;
+                .modal-header-title {
+                    font-size: 12px;
+                    font-weight: 700;
+                    line-height: 20px;
+                    letter-spacing: 0;
+                    text-transform: unset;
+                    font-family: $fontFamily-headings;
+                    color: #505050;
+                }
+                .modal-close {
+                    top: 50%;
+                    right: 15px;
+                    transform: translateY(-50%);
+                }
+                @media (min-width: 415px) {
+                    padding: 15px 30px;
+                }
+            }
+            .modal-body {
+                padding: 20px 15px;
+                .form-actions {
+                    .button {
+                        min-width: 120px;
+                    }
+                }
+                .writeReview-productDetails {
+                    
+                }
+                .writeReview-form {
+
+                }
+            }
+            @media (min-width: 768px) {
+                .modal-body {
+                    padding: 30px; 
+                }
+            }
+            @media (min-width: 993px) {
+                .modal-body {
+                    padding: 50px 60px;
+                }
+            }
+        }
+
+        .modal-quickview {
+            width: 1000px;
+            @media (min-width: 1024px) {
+                .modal-body {
+                    padding: 40px;
+                }
+            }
+        }
+
+        #previewModal {
+            width: 1030px;
+            @media (min-width: 993px) {
+                .modal-body {
+                    padding: 32px 50px 50px 50px;
+                }
+            }
+        }
+        #video-gallery-popup {
+            max-width: 600px;
+            right: auto;
+            @media (max-width: 480px){
+                max-width: 92%;
+            }
+            .modal-body {
+                padding: 30px;
+            }
+            .videoGallery-list {
+                text-align: center;
+                overflow-x: auto;
+                overflow-y: hidden;
+                white-space: nowrap;
+                margin: 0;
+                padding: 0 0 10px;
+                .videoGallery-item {
+                    white-space: normal;
+                    width: auto;
+                    max-width: 180px;
+                    padding: 0 15px 0 0;
+                    display: inline-block;
+                    .video {
+                        margin-bottom: 10px;
+                        .video-figure {
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+        }
+        .slick-arrow {
+            padding: 0;
+            width: 38px;
+            height: 38px;
+            fill: #000000;
+            border: 1px solid #bebebe;
+            margin-top: 0;
+            transition: all 0.3s ease;
+            background-color: #ffffff;
+            padding: 11px;
+            border-radius: 3px;
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+            -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+            -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+            -ms-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+            &:before {
+                content: none;
+            }
+            &.slick-prev {
+                left: 0;
+            }
+            &.slick-next {
+                right: 0;
+            }
+            &:hover {
+                background-color: transparent;
+                fill: stencilColor('color-textLink--hover');
+            }
+        }
+
+        .slick-dots {
+            li {
+                padding: 0;
+                width: auto;
+                height: auto;
+                margin: 0 5px;
+                button {
+                    width: 10px;
+                    height: 10px;
+                    opacity: 0.2;
+                    border: 1px solid #323232;
+                    background-color: #323232;
+                    transition: all 0.3s ease;
+                    &:before {
+                        content: none;
+                    }
+                }
+                @media (min-width: 415px) {
+                    margin: 0 7px;
+                    button {
+                        width: 12px;
+                        height: 12px;
+                    }
+                }
+            }
+            .slick-active {
+                button {
+                    opacity: 0.8;
+                    background-color: transparent;
+                }
+            }
+        }
+
+        .color-success {
+            color: $color-success;
+        }
+
+        .bg-mobile {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0;
+            // content: "";
+            visibility: hidden;
+            position: absolute;
+            transition: all .3s ease;
+            background-color: rgba(0,0,0,.3);
+            .themevale_quickSearch & {
+                z-index: 10;
+            }
+            .themevale_open-Sidebar &,
+            .themevale_open-Account &,
+            .has-activeNavPages & {
+                z-index: 51;
+            }
+            .themevale_quickSearch &,
+            .themevale_open-Account &,
+            .themevale_open-Sidebar &,
+            .has-activeNavPages & {
+                display: block;
+                opacity: 1;
+                visibility: visible;
+            }
+            @media (min-width: 1025px) {
+                display: none;
+            }
+        }
+
+    /*--------  2.0 Responsive  ---------*/
+        .themevale_Mobile {
+            top: 0;
+            bottom: 0;
+            left: -100%;
+            width: calc(100% - 42px);
+            height: 100%;
+            padding: 1px 0 0;
+            z-index: 52;
+            position: fixed;
+            background-color: #fff;
+            transition: all .8s ease;
+            -webkit-transition: all .8s ease;
+            .page-sidebar {
+                display: block;
+            }
+            .themevale_MobileContent {
+                padding: 0;
+                overflow-y: auto;
+                height: 100%;
+                .navPages{
+                  li:first-child {
+                        border-top: none;
+                    }  
+                } 
+                #sideTopSellers,#sideTopSellers1{
+                    .slick-dots{
+                        display: block !important;
+                    }
+                }
+            }
+            .themevale_close {
+                top: 0;
+                right: -42px;
+                width: 42px;
+                height: 42px;
+                z-index: 10;
+                line-height: 42px;
+                position: absolute;
+                text-align: center;
+                background-color: #f5f5f5;
+                .close {
+                    opacity: 1;
+                    width: 100%;
+                    height: 100%;
+                    color: #323232;
+                    display: block;
+                    font-size: 34px;
+                    font-weight: 300;
+                }
+            }
+            @media (min-width: 551px) {
+                left: -422px;
+                width: 380px;
+                .themevale_close {
+                    right: -40px;
+                    background-color: #ffffff;
+                    // box-shadow: 0px 0px 1px rgba(0,0,0,0.2);
+                }
+            }
+            @media (min-width: 1025px) {
+                display: none;
+            }
+        }
+
+        .has-activeNavPages .themevale_MobileMenu,
+        .themevale_open-Sidebar .themevale_MobileSidebar,
+        .themevale_open-Account .themevale_MobileAccount {
+            left: 0;
+        }
+#sidebar-mobile{
+    .themevale_MobileContent{
+        padding:10px 20px;
+    }
+}
+/*=====  End of www.themevale.com  ======*/
+// Search ------------------
+.search-form{
+    button{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        border: 0;
+        transition: none;
+        text-align: center;
+        background: transparent;
+        svg{
+            width: 18px;
+            padding: 1px;
+            height: 18px;
+            fill: stencilColor('background-color-icon-form-seach-top');
+            &:hover{
+                fill: stencilColor('background-color-icon-form-seach-top-hover');
+            }
+        }
+    }
+    .form-field {
+        margin: 0;
+        position: relative;
+        width: 100%;
+        max-width: 150px;
+        height: 36px;
+        background-color: #fff;
+        border-radius: 3px;
+        .form-input{    
+            font-family: "Poppins", Arial, Helvetica, sans-serif;
+            font-weight: 500;
+            font-size: 12px;
+            color: stencilColor("background-color-text-form-seach-top");
+            background-color:stencilColor("background-color-form-seach-top"); 
+            border: none;
+            padding-top: 12px;
+            max-height: 36px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            -ms-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            &::-moz-placeholder {
+              color: stencilColor("background-color-text-form-seach-top");
+              opacity: 1;
+            }
+            &:-ms-input-placeholder {
+              color: stencilColor("background-color-text-form-seach-top") !important;
+            }
+            &::-webkit-input-placeholder {
+              color: stencilColor("background-color-text-form-seach-top");
+            }
+        }
+    }
+    .form {
+        margin: 0;
+    }
+    .form-input::-moz-placeholder {
+      color: #3c3c3c;
+      opacity: 1;
+    }
+    .form-input:-ms-input-placeholder {
+      color: #3c3c3c !important;
+    }
+    .form-input::-webkit-input-placeholder {
+      color: #3c3c3c;
+    }   
+    
+}

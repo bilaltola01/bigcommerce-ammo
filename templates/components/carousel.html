@@ -1,0 +1,53 @@
+<section class="heroCarousel "
+    data-slick='{
+        "fade": true,
+        "dots": true,
+        "arrows": false,
+        "autoplay": true,
+        "slidesToShow": 1,
+        "slidesToScroll": 1,
+        "mobileFirst": true,
+        "pauseOnHover": false,
+        "autoplaySpeed": {{carousel.swap_frequency}},
+        "nextArrow": "<svg class=&apos;slick-next slick-arrow&apos;><use xlink:href=&apos;#slick-arrow-next&apos;></use></svg>", 
+        "prevArrow": "<svg class=&apos;slick-prev slick-arrow&apos;><use xlink:href=&apos;#slick-arrow-prev&apos;></use></svg>",
+        "responsive": [
+            {
+                "breakpoint": 1025,
+                "settings": {
+                    "dots": false,
+                    "arrows": true,
+                    "autoplay": true
+                }
+            },
+            {
+                "breakpoint": 992,
+                "settings": {
+                    "dots": true,
+                    "arrows": false,
+                    "autoplay": false
+                }
+            }
+        ] }'>
+    {{#each carousel.slides}}
+    <a class="link" href="{{url}}">
+        <div class="heroCarousel-slide {{#if ../theme_settings.homepage_stretch_carousel_images}}stretch{{/if}} {{#if @first}}heroCarousel-slide--first{{/if}}">
+            <div class="heroCarousel-image-wrapper">
+                <img class="heroCarousel-image" src="{{image}}" alt="{{alt_text}}" title="{{alt_text}}"/>
+                <h2 class="heroCarousel-title animated visible-tab">{{{heading}}}</h2>
+            </div>
+            {{#if heading}}
+                {{> components/carousel-content show_background=true}}
+            {{else}}
+                {{#if text}}
+                    {{> components/carousel-content show_background=true}}
+                {{else}}
+                    {{#if button_text}}
+                        {{> components/carousel-content show_background=false}}
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+        </div>
+    </a>
+    {{/each}}
+</section>

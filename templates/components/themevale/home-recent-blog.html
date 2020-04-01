@@ -1,0 +1,69 @@
+<div id="home-recent-blog" class="themevale-section">
+    <div class="themevale_page-heading-wrapper">
+        <div class="themevale_container">
+            <h2 class="themevale_page-heading">Recent Posts</h2>
+            <div class="view_all">
+                <a href="#">{{lang 'common.view_all'}}<svg><use xlink:href="#icon-down-top"/></svg></a>
+            </div>
+        </div>
+    </div>
+    <div class="themevale_container">
+        <div class="themevale_banner-list productCarousel" data-slick='{
+                "nav": false,
+                "dots": true,
+                "arrows": false,
+                "infinite": false,
+                "slidesToShow": 2,
+                "slidesToScroll": 2,
+                "responsive": [
+                    {
+                        "breakpoint": 1025,
+                        "settings": {
+                            "slidesToScroll": 2,
+                            "slidesToShow": 2 
+                           
+                        }
+                    },
+                    {
+                        "breakpoint": 992,
+                        "settings": {
+                            "slidesToScroll": 2,
+                            "slidesToShow": 2
+                        }
+                    },
+                    {
+                        "breakpoint": 600,
+                        "settings": {
+                            "slidesToScroll": 1,
+                            "slidesToShow": 1
+                        }
+                    }
+                ]
+            }'>
+            {{#each blog.recent_posts}}
+            <div class="banner-item slick-slide">
+                <div class="themevale_blog-wrapper">
+                    <a class="banner-link" href="{{this.url}}">
+                        {{#if this.thumbnail}}
+                            <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage this.thumbnail 'homepage_blog_posts_img_size' (cdn theme_settings.default_image_product)}}" alt="{{this.title}}">
+                        {{else}}
+                            <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="/product_images/uploaded_images/productdefault.gif" alt="{{this.title}}">
+                        {{/if}}
+                    </a>
+                    <div class="blog-content-bottom">
+                            <div class="content-top-blog">
+                                <a class="blog-title" href="{{this.url}}">{{ellipsis this.title 70}}</a>
+                                <div class="posted-by"><span><svg class="icon"><use xlink:href="#icon-user-blog"></use></svg>{{#if this.author}}{{lang 'blog.posted_by' name=this.author}}</span>{{/if}}<span><svg class="icon"><use xlink:href="#icon-clock-blog"></use></svg>{{this.date_published}}</span></div>
+                            </div>
+                            <div class="content-bottom-blog">
+                                <p>{{ellipsis this.summary 200}}...</p>
+                                <a href="{{this.url}}" class="read-more-blog"><svg><use xlink:href="#icon-down-top"/></svg>Read More</a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,64 @@
+---
+cart: true
+---
+{{#partial "page"}}
+<div class="page-heading-wrapper-2">
+    <div class="themevale_container">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    {{> components/cart/page-title}}
+    </div>
+</div>
+<div class="page">
+    <main class="themevale_container" data-cart>
+        <div data-cart-status>
+            {{> components/cart/status-messages}}
+        </div>
+        {{#if cart.items.length}}
+            <div class="loadingOverlay"></div>
+            <div data-cart-content>
+                {{> components/cart/content}}
+            </div>
+            <div class="cart-totals-bottom">
+                <div class="data-cart-totals">
+                    <div data-cart-totals>
+                        {{> components/cart/totals}}
+                    </div>
+                    {{#if cart.show_primary_checkout_button}}
+                        <div class="cart-actions">
+                            <a class="button button--primary btn-checkout" href="{{urls.checkout.single_address}}" title="{{lang 'cart.checkout.title'}}">Proceed To checkout</a>
+                            {{#if cart.show_multiple_address_shipping}}
+                                <a class="checkoutMultiple" href="{{urls.checkout.multiple_address}}">
+                                    {{lang 'cart.preview.checkout_multiple'}}
+                                </a>
+                            {{/if}}
+                        </div>
+                    {{else}}
+                        <div class="cart-actions">
+                            <a class="button" href="{{urls.home}}" title="{{lang 'cart.continue_shopping'}}">{{lang 'cart.continue_shopping'}}</a>
+                        </div>
+                    {{/if}}
+                    <div class="seal-logos">
+                        <a href="#"><img src="https://cdn11.bigcommerce.com/s-4fncb3zo7t/product_images/uploaded_images/norton.png" alt="Norton"></a>
+                        <a href="#"><img src="https://cdn11.bigcommerce.com/s-4fncb3zo7t/product_images/uploaded_images/etrust.png" alt="Etrust"></a>
+                        <a href="#"><img src="https://cdn11.bigcommerce.com/s-4fncb3zo7t/product_images/uploaded_images/authorized-net.png" alt="Authorized.net"></a>
+                        <a href="#"><img src="https://cdn11.bigcommerce.com/s-4fncb3zo7t/product_images/uploaded_images/accredited-business.png?t=1556164090&_ga=2.190362027.143949967.1555899540-1383760574.1555574393" alt="Accredited Business"></a>
+                    </div>
+
+                    {{#if cart.additional_checkout_buttons}}
+                        <div class="cart-additionalCheckoutButtons">
+                            {{#each cart.additional_checkout_buttons}}
+                                {{{this}}}
+                            {{/each}}
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+        {{else}}
+            <h3>{{lang 'cart.checkout.empty_cart'}}</h3>
+        {{/if}}
+        {{{snippet 'cart'}}}
+    </main>
+</div>
+{{/partial}}
+{{> layout/base}}
+

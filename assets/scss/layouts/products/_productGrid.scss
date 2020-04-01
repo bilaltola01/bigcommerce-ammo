@@ -1,0 +1,356 @@
+// =============================================================================
+// PRODUCT GRID (CSS)
+// =============================================================================
+
+
+// Product grid view
+// -----------------------------------------------------------------------------
+//
+// 1. Re-set the font-size, as we're reducing it to 0 in the .products class.
+//
+// -----------------------------------------------------------------------------
+
+.productGrid {
+    list-style: none;
+    max-width: none;
+    width: auto;
+    font-size: 0;
+    margin: 0;
+    background: #ffffff;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+    -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+    -ms-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+    @media (min-width: 1025px) {
+        .product{
+            .card {
+                padding-bottom: 20px;
+                margin-bottom: 0px;
+            }
+        }
+    }
+    .product {
+        @include grid-column(6, $float: none);
+        display: inline-block;
+        font-size: fontSize("base"); // 1
+        vertical-align: top;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        position: relative;
+        border-left: 1px solid #efefef;
+        border-top: 1px solid #efefef;
+        &:first-child,&:nth-child(4n-7){
+            @media (min-width: 1025px){
+                border-left: none;
+            }
+        }
+        &:nth-child(3n+1){
+            @media (max-width: 1024px){
+                border-left: none;
+            }
+        }
+        &:nth-child(odd){
+            @media (max-width: 480px){
+                border-left: none;
+            }
+        }
+        &:before{
+            position: absolute;
+            z-index: 1;
+            top: -19px;
+            right: -19px;
+            bottom: 0;
+            left: -19px;
+            display: none;
+            content: '';
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,.2);
+            border-radius: 3px;
+        }
+        @media (max-width: 320px){
+            width: 100%;
+        }
+        @media (min-width: 601px) {
+            width: grid-calc(4, $total-columns);
+        }
+        @media (min-width: 993px) {
+            width: grid-calc(3, $total-columns);
+        }
+        @media (min-width: 1025px) {
+            // padding-left: 15px;
+            // padding-right: 15px;
+        }
+    }
+    &.column-1 {
+        margin-bottom: 30px;
+        .product {
+            width: 100%;
+            display: block;
+            + .product {
+                padding-top: 38px;
+                margin-top: 3px;
+                border-top: 1px solid #eee;
+                @media (min-width: 767px) and (max-width: 1024px){
+                    padding-top: 28px;
+                    margin-top: 27px;
+                }
+                @media (max-width: 480px){
+                    padding-top: 27px;
+                    margin-top: 40px;
+                }
+            }
+            .card-option{
+                [data-product-attribute="swatch"]{
+                    @media (max-width: 767px){
+                        text-align: left;
+                        margin-bottom: 18px;
+                    }
+                }
+            }
+        }
+        .card{
+            padding: 0;
+            margin-bottom: 0;
+            display: table;
+            width: 100%;
+            &:hover{
+                .card-figure{
+                    .wishlist{
+                        opacity: 0;
+                        visibility: hidden;
+                    }
+                }
+            }
+            .card-figure{
+                display: table-cell;
+                vertical-align: top;
+                width: 85px;
+                @media (min-width: 767px) and (max-width: 1024px){
+                    padding-bottom: 0;
+                }
+                @media (min-width: 360px){
+                    width: 120px;
+                }
+                @media (min-width: 551px){
+                    width: 250px;
+                }
+                @media (min-width: 993px){
+                    width: 290px;
+                }
+                > .wishlist{
+                    display: none;
+                }
+               
+            }
+            .card-body{
+                display: table-cell;
+                vertical-align: top;
+                @media (min-width: 551px){
+                    padding-left: 30px;
+                }
+                @media (min-width: 993px){
+                    font-size: 0;
+                    padding-left: 50px;
+                }              
+                .card-detail{
+                    font-size: 1rem;
+                    display: block;
+                    padding-right: 0;
+                    margin-bottom: 17px;
+                    text-align: left;
+                   
+                }
+                .card-actions{
+                    font-size: 1rem;
+                    display: block;
+                    .card-compare{
+                        text-align: left;
+                        display: inline-block;
+                        width: 100%;
+                        float: right;
+                        margin-top:10px;
+                        @media (max-width: 1024px){
+                            display: none;
+                        }
+                    }
+                    .wishlist{
+                        display: block;
+                        background: transparent;
+                        color: #2d2d2d;
+                        border-color: #cbcbcb;
+                        font-weight: 400;
+                        text-transform: unset;
+                        letter-spacing: 0;
+                        margin-top: 0;
+                        .button-wishlist-dropdown{
+                            border: none;
+                            box-shadow: none;
+                            color: #333333;
+                            font-weight: 500;
+                            text-transform: unset;
+                            font-size: 12px;
+                            letter-spacing: 0;
+                            background: transparent;
+                            &:hover{
+                                background: transparent;
+                                color: #333333;
+                                border: none;
+                            }
+                        }
+                        .dropdown-menu-button{
+                            .icon{
+                                float: none;
+                                width: 20px;
+                                height: 18px;
+                                fill: #3a3a3a;
+                                position: relative;
+                                top: -2px;
+                                &.icon-down{
+                                    margin-left: 2px;
+                                    fill: #8b8b8b;
+                                    position: relative;
+                                    top: -1px;
+                                }
+                            }
+                        } 
+                        .dropdown-menu{
+                            &.is-open{
+                                li{
+                                    line-height: 30px;
+                                    border-bottom: 1px solid #eaeaea;
+                                    &:last-child{
+                                        border-bottom: 0;
+                                    }
+                                }
+                                &:before{
+                                    left: auto;
+                                    right: .75rem;
+                                }
+                                &:after{
+                                    left: auto;
+                                    right: .91667rem;
+                                }
+                            }
+                        }
+                        &:hover{
+                            border-color: #000;
+                        }
+                        svg{
+                            fill: #8b8b8b;
+                        }
+                        span{
+                            margin-left: 5px;
+                        }
+                    }
+                    .themevale_btnATC{
+                        margin-left: 0;
+                        margin-right: 0;
+                        max-width: 214px;
+                        width: 100%;
+                        margin-top: 0px;
+                        display: inline-block;
+                        float: left;
+                        @media (max-width: 768px){
+                            margin-left: 0;
+                            margin-right: 0;
+                            max-width: 214px;
+                            margin-top: 4px;
+                            display: inline-block;
+                            float: left;
+                            width: 100%;
+                        }
+                    }
+                    .wishlist{
+                        display: inline-block;
+                        float: left;
+                        margin-left: 5px;
+                         @media (max-width: 768px){
+                            display: none;
+                        }
+                    }
+
+                }
+            }
+        }
+        .card-desciption{
+            display: block;
+            max-height: 60px;
+            overflow: hidden;
+            margin-bottom: 14px;
+        }
+    }
+}
+
+
+// Product grid view variation
+// -----------------------------------------------------------------------------
+
+.productGrid--maxCol6 {
+    .product {
+        @media (min-width: 1025px) {
+            width: 20% !important;
+        }
+        @media (min-width: 1281px) {
+            width: grid-calc(2, $total-columns) !important;
+        }
+    }
+}
+
+.productGrid--maxCol5 {
+    .product {
+        @media (min-width: 1025px) {
+            width: 20% !important;
+        }
+    }
+}
+
+.productGrid--maxCol3 {
+    .product {
+        @media (min-width: 993px) {
+            width: grid-calc(4, $total-columns) !important;
+        }
+    }
+}
+
+.productGrid--maxCol2 {
+    .product {
+        @media (min-width: 601px) {
+            width: grid-calc(6, $total-columns) !important;
+        }
+    }
+}
+
+// Product when sidebar is present
+// -----------------------------------------------------------------------------
+//
+// 1. When the sidebar is visible, reduce products to 3 across.
+//
+// -----------------------------------------------------------------------------
+
+.page-sidebar + .page-content {
+
+    .productGrid:not(.column-1) {
+        // scss-lint:disable SelectorDepth, NestingDepth
+        .product { // 1
+            @media (min-width: 1025px) {
+                width: grid-calc(3, $total-columns);
+                margin-bottom: 0px;
+            }
+        }
+    }
+    .productGrid.column-1 {
+        .card{
+            &:before {
+                content: none;
+            }
+            .card-body{
+                .card-actions {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            } 
+        }
+    }
+
+}

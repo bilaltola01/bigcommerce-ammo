@@ -1,0 +1,97 @@
+---
+products:
+    new:
+        limit: {{theme_settings.homepage_new_products_count}}
+    top_sellers:
+         limit: {{theme_settings.homepage_top_products_count}}
+    featured:
+        limit: {{theme_settings.homepage_featured_products_count}}
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: {{theme_settings.productpage_related_products_count}}
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+---
+{{#partial "page"}}
+<div class="page">
+    <div class="themevale_container">
+        {{#each product.shipping_messages}}
+            {{> components/common/alert-info message}}
+        {{/each}}
+        <aside class="page-sidebar" id="faceted-search-container">
+            {{> components/products/sidebar}}
+        </aside>
+        <main itemscope itemtype="http://schema.org/Product" class="page-content">
+            <div class="navPages-container">
+                <div class="themevale_navPages-item text-left">
+                    {{#if page_type '===' 'default'}}
+                        <h1 class="header-logo">
+                            {{> components/common/store-logo}}
+                        </h1>
+                    {{else}}
+                        <div class="header-logo">
+                            {{> components/common/store-logo}}
+                        </div>
+                    {{/if}}
+                </div> 
+                <div class="themevale_navPages-item" id="menu" data-menu>
+                    {{> components/common/navigation-menu}}
+                </div>
+                <div class="themevale_navPages-item text-right">
+                    <div class="items">
+                        <a class="navPages-icon" href="#" data-search="quickSearch" aria-controls="quickSearch" aria-expanded="false">
+                            <span class="text-hidden">search icon</span>
+                            <svg class="icon"><use xlink:href="#icon-search"></use></svg>
+                        </a>
+                    </div>
+                    <div class="items navUser-item--cart top-cart">
+                        <a
+                            class="navPages-icon"
+                            data-cart-preview
+                            data-options="align:right"
+                            href="{{urls.cart}}">
+                            <span class="text-hidden">cart icon</span>
+                            <div class="navUser-item-cartIcon">
+                                <svg class="icon"><use xlink:href="#icon-cart"></use></svg><span class="countPill countPill--positive cart-quantity">{{#if cart.items}}{{cart.quantity}}{{else}}0{{/if}}</span>
+                            </div>
+                        </a>
+                        <div class="dropdown-cart" id="cart-preview-dropdown2" aria-hidden="true"></div>
+                    </div>
+                </div>
+            </div>
+            <!--  -->
+            <div class="page-heading-wrapper">
+                <div class="themevale_container themevale_breadcrumbCategory">
+                    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+                </div>
+            </div>
+            <!--  -->
+            {{> components/products/product-view schema=true}}
+            <!--  -->
+            {{#if product.related_products}}
+            <section id="relatedProducts" class="themevale-section">
+                <div class="themevale_page-heading-wrapper">
+                    <h2 class="themevale_page-heading">{{lang 'products.related_products'}}</h2>
+                </div>
+                    {{> components/products/related-carousel products_new=products.new products=product.related_products columns=4 arrows=true dots=true}}
+            </section>
+            {{/if}}
+            <!--  -->
+            {{#if product.similar_by_views}}
+            <section id="similarByViews" class="themevale-section">
+                <div class="themevale_page-heading-wrapper">
+                    <h2 class="themevale_page-heading">{{lang 'products.similar_by_views'}}</h2>
+                </div>
+                    {{> components/products/similar-by-views-carousel products_new=products.new products=product.similar_by_views columns=4 arrows=true dots=true}}
+            </section>
+            {{/if}}
+
+        </main>
+    </div>
+</div>
+{{/partial}}
+{{> layout/base}}

@@ -1,0 +1,146 @@
+<article class="card {{#if alternate}}card--alternate{{/if}}" data-product-id="{{id}}" {{#if settings.data_tag_enabled}} data-event-type="{{event}}" data-entity-id="{{id}}" data-position="{{position}}" data-name="{{name}}" data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{brand.name}}" data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}" {{/if}}>
+    <figure class="card-figure">
+        <div class="card-figure-link card-img-hover">
+            <a class="card-link" href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>
+                <div class="card-img-container" data-product-id="{{id}}">
+                    {{#each productsnew}}
+                        {{#if id '==' ../id}}
+                        <div class="new-flag-side">New</div>
+                        {{/if}}
+                    {{/each}}
+                    {{#or price.non_sale_price_with_tax price.non_sale_price_without_tax}}
+                        {{#if theme_settings.product_sale_badges '===' 'sash'}}
+                            <div class="sale-flag-sash">
+                                <span class="sale-text">On Sale!</span>
+                            </div>
+                        {{else if theme_settings.product_sale_badges '===' 'topright'}}
+                            <div class="sale-flag-side">Sale</div>
+                        {{else if theme_settings.product_sale_badges '===' 'burst'}}
+                            <div class="starwrap">
+                                <div class="sale-text-burst">Sale!</div>
+                                <div class="sale-flag-star"></div>
+                            </div>
+                        {{/if}}
+                    {{/or}}
+                    {{#if out_of_stock_message}}
+                        <div class="out-flag-side">Out of stock</div>
+                    {{/if}}
+                    {{#each custom_fields}}
+                        {{#if name '==' 'custom-label'}}
+                            <div class="custom-badge">
+                                <div class="sale-text">{{{value}}}</div>
+                            </div>
+                        {{/if}}
+                    {{/each}}
+                    <img class="card-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
+                    {{#if images.length '>=' 2}}
+                        {{#each images}}
+                            {{#if @index '==' 1}}
+                                <span class="product-additional" data-product-id="">
+                                    <img class="replace-2x img-responsive" src="{{getImage this 'productgallery_size' (cdn theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
+                                </span>
+                            {{/if}}
+                        {{/each}}
+                    {{/if}}
+                </div>
+            </a>
+            {{#if theme_settings.show_product_wishlist}}
+            {{#if show_wishlist}}
+            <a href="/wishlist.php?action=add&product_id={{id}}" class="card-figcaption-button wishlist" title="{{lang 'account.wishlists.add_item'}}">
+                <svg><use xlink:href="#icon-heart" /></svg>
+            </a>
+            {{/if}}
+            {{/if}}
+            {{#unless hide_product_quick_view}}
+                {{#if theme_settings.show_product_quick_view}}
+                    <a href="#" class="card-figcaption-button quickview" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} data-product-id="{{id}}">{{lang 'products.quick_view'}}</a>
+                {{/if}}
+            {{/unless}}
+        </div>
+    </figure>
+    <div class="card-body">
+        <div class="card-detail">
+            {{#if brand.name}}
+                <p class="card-brand" data-test-info-type="brandName">{{brand.name}}</p>
+            {{/if}}
+            <h4 class="card-title">
+                <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{name}}</a>
+            </h4>
+            {{> components/products/bulk-discount-rates}}
+            <div class="price-wrapper">
+                <div class="card-price" data-test-info-type="price">
+                    {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                        {{> components/products/price price=price}}
+                    {{else}}
+                        {{> components/common/login-for-pricing}}
+                    {{/or}}
+                </div>
+            </div>
+            <div class="card-desciption">
+                <p>{{{summary}}}</p>
+            </div>
+            {{#if show_rating}}
+                <p class="card-rating" data-test-info-type="productRating">
+                    <span class="rating--small">
+                        {{> components/products/ratings rating=rating}}
+                    </span>
+                </p>
+            {{/if}}
+          
+         </div>
+        <div class="card-actions">
+            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                {{#if show_cart_action}}
+                    {{#if has_options}}
+                        <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button card-figcaption-button themevale_btnATC themevale_Option" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
+                    {{/if}}
+                    {{#if pre_order}}
+                        <a href="{{pre_order_add_to_cart_url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button card-figcaption-button themevale_btnATC">{{lang 'products.pre_order'}}</a>
+                    {{/if}}
+                    {{#if add_to_cart_url }}
+                        <a href="{{add_to_cart_url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button card-figcaption-button themevale_btnATC themevale_AddToCart" data-product-id="{{id}}">{{lang 'products.add_to_cart'}}</a>
+                    {{/if}}
+                    {{#if out_of_stock_message }}
+                        <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button card-figcaption-button themevale_btnATC out_of_stock" data-product-id="{{id}}">{{out_of_stock_message}}</a>
+                    {{/if}}
+                {{/if}}
+            {{/or}}
+
+            {{#if show_wishlist}}
+                <div class="form-wishlist wishlist" data-wishlist-add>
+                    <a href="#" aria-expanded="false" class="button button--dropdown dropdown-menu-button button-wishlist-dropdown" data-dropdown="wishlist-dropdown1_{{id}}">
+                        <svg class="icon"><use xlink:href="#icon-heart"/></svg>
+                        <span>{{lang 'account.wishlists.add_item'}}</span>
+                        <svg class="icon icon-down"><use xlink:href="#icon-keyboard-arrow-down"/></svg>
+                    </a>
+                    <ul aria-hidden="true" class="dropdown-menu" id="wishlist-dropdown1_{{id}}" tabindex="-1">
+                        {{#if customer.wishlists}} 
+                            {{#each customer.wishlists}}
+                                <li>
+                                    <a data-wishlist href="{{this.add_url}}&product_id={{../id}}">{{this.name}}</a>
+                                </li>
+                            {{/each}} 
+                            <li>
+                                <a data-wishlist href="/wishlist.php?action=addwishlist&product_id={{id}}">{{lang 'account.wishlists.create_new'}}</a>
+                            </li>
+                        {{else}}
+                            <li>
+                                <a data-wishlist href="/wishlist.php?action=add&product_id={{id}}">{{lang 'account.wishlists.add_to_default'}}</a>
+                            </li>
+                            <li>
+                                <a data-wishlist href="/wishlist.php?action=addwishlist&product_id={{id}}">{{lang 'account.wishlists.create_new'}}</a>
+                            </li>
+                        {{/if}}
+                    </ul>
+                </div>
+            {{/if}}
+
+            {{#if show_compare}}
+                <label class="card-compare" for="compare-{{id}}">
+                    <input type="checkbox" name="products[]" value="{{id}}" id="compare-{{id}}" data-compare-id="{{id}}"> {{lang 'products.compare'}}
+                </label>
+            {{/if}}
+        </div>
+        
+    </div>
+</article>

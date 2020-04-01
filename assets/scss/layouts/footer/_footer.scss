@@ -1,0 +1,576 @@
+// =============================================================================
+// FOOTER (CSS)
+// =============================================================================
+
+
+// Layout and columns
+// -----------------------------------------------------------------------------
+//
+// 1. To enable the grid's display: inline-block; to work properly, we need to
+//    remove the white-space that it creates between columns with font-size: 0;
+// 2. Re-set the font-size that was reduced to 0 in point 1 for children.
+//
+// -----------------------------------------------------------------------------
+
+.footer,.newsletter-content {
+    .socialLinks {
+        margin-top: 0;
+        line-height: 32px;
+        .socialLinks-item {
+            margin-right: 4px;
+            list-style: none;
+            a{
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                text-align: center;
+                svg{
+                    width: 14px;
+                    fill: #ffffff;
+                }
+                &.icon--facebook{
+                    background: #3f5996;
+                }
+                &.icon--twitter{
+                    background: #51b5e6;
+                }
+                &.icon--google{
+                    background: #e45d34;
+                }
+                &.icon--youtube{
+                    background: #ec3323;
+                }
+                &.icon--instagram{
+                    background: #5a7ea2;
+                }
+                &.icon--messenger{
+                    background: #3081ef;
+                }
+            }
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+        + .footer-info-heading {
+            margin-top: 30px;
+        }
+    }
+}
+
+.footer-info {
+    @include grid-row($behavior: nest);
+    font-size: 0;
+    margin: 0 -8px;
+    @media (min-width: 1025px) {
+        margin: 0 -15px;
+    }
+}
+
+.footer-info-col {
+    @include grid-column(12);
+    font-size: 12px;
+    float: none;
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 8px;
+    &:not(.footer-info-col--small) {
+    }
+    .form, .form-field {
+        margin-bottom: 0;
+    }
+    @media (min-width: 768px) {
+        width: 100%;
+    }
+    @media (min-width: 1025px) {
+        padding: 0 15px;
+        width: 40%;
+        &:not(.footer-info-col--small) {
+            margin-top: 0px;
+        }
+        .footer-right-col{
+            width: 49%;
+        }
+    }
+    .footer-info-col-child{
+        +.footer-info-col-child{
+            margin-top: 25px;
+            @media (max-width: 766px){
+                margin-top: 0;
+            }
+        }
+    }
+    .seal-logos {
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        margin-bottom: 25px;
+        padding: 0 15px;
+        margin-top: 20px;
+        @media (max-width: 768px){
+            margin-right: -15px;
+        }
+        a {
+            display: inline-block;
+            margin-right: 15px;
+            &:last-child {
+                margin-right: 0px;
+            }
+            @media (max-width: 767px) {
+                &:last-child {
+                    margin-right: 0px;
+                }
+            }
+        }
+    }
+}
+.newsletterSubscription{
+    p{
+        color: stencilColor("color-text-footer-newsletter");
+    }
+}
+
+.footer-info-col--small {
+    @media (min-width: 768px) {
+        width: 33.33333%;
+    }
+    @media (min-width: 1025px) {
+        width: 20%;
+    }
+}
+
+.footer-info-col--social {
+    width: 100%;
+}
+
+// Content
+// -----------------------------------------------------------------------------
+
+.footer-info-heading {
+    font-weight: 700;
+    color: stencilColor('footer-text-heading-Color');
+    font-size: 12px;
+    margin: 0 0 12px 0;
+    text-transform: uppercase;
+    @media (max-width: 767px) {
+        .footer-dropdownmobile & {
+            position: relative;
+            padding: 7px 0;
+            border-bottom: 1px solid #dadada;
+            &:before {
+                right: 0;
+                top: 50%;
+                z-index: 2;
+                content: "\f107";
+                font-family: "FontAwesome";
+                color: inherit;
+                font-size: 20px;
+                line-height: 1;
+                font-weight: 500;
+                position: absolute;
+                transform: translateY(-50%);
+            }
+        }
+        .footer-dropdownmobile.open-dropdown & {
+            &:before {
+                font-weight: 500;
+                content: "\f106";
+            }
+        }
+    }
+    
+}
+
+.footer-info-list {
+    list-style: none;
+    margin-left: 0;
+    margin: 0;
+    > li {
+        line-height: 25px;
+        a{
+            line-height: 14px;
+            display: inline-block;
+            vertical-align: middle;
+            color: stencilColor('footer-textColor');
+            &:before{
+                left: 0;
+                bottom: -1px;
+                height: 1px;
+                width: 0;
+                content: "";
+                position: absolute;
+                background-color: #2465c6;
+                transition: all .3s ease;
+            }
+            &:hover{
+                color: stencilColor('footer-textColor-hover');
+                &:before{
+                    width: 100%;
+                }
+            }
+        }
+    }
+    .view-all {
+        font-weight: 400;
+        line-height: 15px;
+        color: #2465c6;
+        svg{
+            width: 9px;
+            height: 9px;
+            fill: #2465c6;
+            transform: rotate(270deg);
+            margin-right: 4px;
+        }
+    }
+}
+.footer-right-col{
+    @media (max-width: 480px){
+        padding: 0;
+    }
+    > h5{
+        &:before{
+            content: none !important;
+        }
+    }
+    .content{
+        .store-address{
+            line-height: 20px;
+            margin-bottom: 13px;
+        }
+        .store-phone{
+            margin-bottom: 4px;
+        }
+        .store-email{
+            a{
+                color: #2465c6;
+                background-image: linear-gradient(transparent 95%, #2465c6 5%);
+                background-repeat: repeat-x;
+                background-position-y: 0px;
+                padding-bottom: 1px;
+            }
+        }
+    }
+
+}
+.footer-copyright {
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 18px;
+    @media (max-width: 480px){
+        display: block;
+    }
+    + .footer-copyright {
+    }
+}
+
+.footer-newsletter-summary {
+    text-align: left;
+}
+
+.footer-protective-image {
+    text-align: center;
+    max-width: 220px;
+    margin-top: 25px;
+    .slick-arrow {
+        width: 10px;
+        height: 18px;
+        fill: stencilColor("color-icon-slider-footer");
+        &:hover {
+            fill: stencilColor("color-icon-slider-footer-hover");
+        }
+        &.slick-next {
+            right: 0px;
+        }
+        &.slick-prev {
+            left: 0px;
+        }
+
+    }
+    img {
+        margin: 0 auto;
+        display: inline-block;
+        width: auto !important;
+    }
+}
+.footer-right-image-payment{
+    display: inline-block;
+    margin-left: 20px;
+    @media (max-width: 768px){
+        display: block;
+    }
+    img {
+        margin-right: 10px;
+    }
+}
+
+/*=========================================
+=            www.themevale.com            =
+=========================================*/
+    .footer {
+        .form-prefixPostfix {
+                .form-input, .button {
+                    width: 100%;
+                    @media (max-width: 320px){
+                        width: 134px;
+                    }
+                }
+                .form-input{
+                    border: 1px solid stencilColor("background-color-border-newsletter");
+                    background: stencilColor("background-color-input-newsletter");
+                    min-width: 360px;
+                    @media (max-width: 480px){
+                        min-width: auto;
+                    }
+                    &::-webkit-input-placeholder {
+                        color: stencilColor("color-text-placeholder-newsletter");
+                    }
+                    &::-moz-placeholder {
+                        color: stencilColor("color-text-placeholder-newsletter");
+                    }
+                    &:-ms-input-placeholder {
+                        color: stencilColor("color-text-placeholder-newsletter");
+                    }
+                    &:-moz-placeholder {
+                        color: stencilColor("color-text-placeholder-newsletter");
+                    }
+                }
+                .button {
+                    margin: 0 0 0 15px;
+                    padding: 0 29px;
+                    line-height: 0;
+                    height: auto;
+                    font-size: 12px;
+                    font-weight: 700;
+                    color: stencilColor('footer-button-textColor');
+                    // border: 1px solid stencilColor('footer-button-border-background');
+                    border: none;
+                    background: -moz-linear-gradient(top, stencilColor('footer-button-background') 0, stencilColor('footer-button-background1') 100%);
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, stencilColor('footer-button-background')), color-stop(100%, stencilColor('footer-button-background1')));
+                    background: -webkit-linear-gradient(top, stencilColor('footer-button-background') 0, stencilColor('footer-button-background1') 100%);
+                    background: -o-linear-gradient(top, stencilColor('footer-button-background') 0, stencilColor('footer-button-background1') 100%);
+                    background: -ms-linear-gradient(top, stencilColor('footer-button-background') 0, stencilColor('footer-button-background1') 100%);
+                    background: linear-gradient(to bottom, stencilColor('footer-button-background') 0, stencilColor('footer-button-background1') 100%);
+                    border-radius: 3px;
+                    &:hover{
+                        color: stencilColor('footer-button-textColor-hover');
+                        background: -moz-linear-gradient(top, stencilColor('footer-button-background-hover') 0, stencilColor('footer-button-background-hover1') 100%);
+                        background: -webkit-gradient(linear, left top, left bottom, color-stop(0, stencilColor('footer-button-background-hover')), color-stop(100%, stencilColor('footer-button-background-hover1')));
+                        background: -webkit-linear-gradient(top, stencilColor('footer-button-background-hover') 0, stencilColor('footer-button-background-hover1') 100%);
+                        background: -o-linear-gradient(top, stencilColor('footer-button-background-hover') 0, stencilColor('footer-button-background-hover1') 100%);
+                        background: -ms-linear-gradient(top, stencilColor('footer-button-background-hover') 0, stencilColor('footer-button-background-hover1') 100%);
+                        background: linear-gradient(to bottom, stencilColor('footer-button-background-hover') 0, stencilColor('footer-button-background-hover1') 100%);
+                        // border: 1px solid stencilColor('footer-button-border-background-hover');
+                        border: none;
+                    }
+                }
+            @media (min-width: 360px) {
+                .form-input, .button {
+                    width: auto;
+                    box-shadow: 0 1px 4px rgba(180, 180, 180, .25);
+                }
+                .button {
+                    margin: 0 0 0 15px;
+                }
+            }
+        }
+    }
+
+    .themevale_contactUs {
+        font-size: 14px;
+        padding: 18px 0;
+        text-align: center;
+        background: stencilColor("footer-contact-background-color");
+        p, span {
+            margin: 0;
+            font-size: 12px;
+            font-weight: bold;
+            color: stencilColor("footer-contact-text-color");
+            line-height: 25px;
+            @media (max-width: 480px){
+                line-height: 25px;
+            }
+        }
+        span{
+            margin: 0 10px;
+        }
+        a{
+            margin: 0;
+            font-size: 12px;
+            font-weight: bold;
+            color: stencilColor("footer-contact-text-color");
+            &:hover{
+                color: stencilColor("footer-contact-text-color");
+            }
+        }
+        span + a {
+            margin-left: 4px;
+        }
+        strong {
+            font-weight: 700;
+            color: stencilColor('color-textHeading');
+        }
+        @include breakpoint("small") {
+            .or1 {
+                font-size: 12px;
+                line-height: 20px;
+                display: inline-block;
+            }
+        }
+        @include breakpoint("medium") {
+            .or2 {
+                margin: 0;
+                display: inline-block;
+                + .button {
+                    margin-left: 15px;
+                }
+            }
+        }
+    }
+
+    .themevale_topFooter {
+        border-top: 1px solid #efefef;
+        border-bottom: 1px solid stencilColor('footer-border-bottom-background-color');
+        position: relative;
+        background: stencilColor('footer-background-color');
+        text-align: center;
+        padding: 20px 0;
+        &:before{
+            content: "";
+            position: absolute;
+            top: 0;
+            left:0;
+            right:0;
+            background: url('https://cdn11.bigcommerce.com/s-4fncb3zo7t/product_images/uploaded_images/line-footer.png');
+            width: 100%;
+            height: 3px;
+            z-index: 10;
+        }
+        h5{
+            display: inline-block;
+            margin-bottom: 0;
+            margin-right: 20px;
+            color: stencilColor('footer-newsletter-text');
+            @media (max-width: 480px){
+                margin-bottom: 10px;
+            }
+        }
+        .form{
+            display: inline-block;
+            margin-bottom: 0;
+            .form-field{
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .themevale_middleFooter {
+        padding: 35px 0;
+        // color: $footer-fontColor;
+        background-color: stencilColor('footer-backgroundColor');
+        @media (max-width: 480px){
+            padding: 15px 0;
+        }
+        svg {
+            // fill: $footer-fontColor;
+            // stroke: $footer-fontColor;
+        }
+        a {
+            // color: $footer-fontColor;
+            &:hover {
+                // color: $footer-fontColorHover;
+            }
+        }
+    }
+
+    .themevale_bottomFooter {
+        padding: 30px 0 90px 0;
+        background-color: stencilColor('footer-bottom-background-color');
+        a, p {
+            margin: 0;
+            color: stencilColor("color-text-all-right-bottom-footer");
+            text-align: center;
+            margin-bottom: 14px;
+        }
+        .left-footer-text{
+            float: left;
+            @media (max-width: 480px){
+                margin-bottom: 15px;
+            }
+            .payment-wrapper {
+                text-align: left;
+                font-size: 0;
+                display: block;
+                img {
+                    display: inline-block;
+                    vertical-align: top;
+                    max-height: 28px;
+                    margin-bottom: 10px;
+                    + img {
+                        margin-left: 10px;
+                    }
+                }
+                @media (max-width: 480px){
+                    overflow-y: auto;
+                    white-space: nowrap;
+                    margin-top: 18px;
+                }
+                @media (min-width: 993px) {
+                    img {
+                        max-height: 22px;
+                        margin-bottom: 0px;
+                        + img {
+                            margin-left: 10px;
+                        }
+                    }
+                }
+            }
+            p{
+                color: stencilColor('footer-bottom-text-color');
+                margin-bottom: 0;
+            }
+        }
+        .themevale_logo {
+            display: block;
+            > a {
+                font-size: 0;
+                display: table;
+                width: 180px;
+                text-align: left;
+                img {
+                    width: auto;
+                    height: 40px;
+                    max-width: none;
+                    -webkit-filter: grayscale(1);
+                    filter: grayscale(1);
+                }
+                > .icon, > .text {
+                    display: table-cell;
+                    vertical-align: middle;
+                }
+                .text {
+                    line-height: 18px;
+                    font-size: 12px;
+                    padding-left: 10px;
+                    color: #a0a0a0;
+                }
+            }
+        }
+        @media (min-width: 768px) {
+            p {
+                margin-bottom: 0;
+            }
+            .footer-copyright {
+                text-align: left;
+                float: left;
+                line-height: 30px;
+            }
+            .themevale_logo {
+                text-align: right;
+                float: right;
+                margin-top: 3px;
+            }
+        }
+    }
+
+
+
+/*=====  End of www.themevale.com  ======*/

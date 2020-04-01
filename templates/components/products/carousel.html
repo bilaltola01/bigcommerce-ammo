@@ -1,0 +1,55 @@
+<div class="productCarousel"
+    data-list-name="{{list}}"
+    data-slick='{
+        "dots": false,
+        "arrows": true,
+        "infinite": false,
+        "slidesToShow": 4,
+        "slidesToScroll": 4,
+        "nextArrow": "<svg class=&apos;slick-next slick-arrow&apos;><use xlink:href=&apos;#slick-arrow-next&apos;></use></svg>", 
+        "prevArrow": "<svg class=&apos;slick-prev slick-arrow&apos;><use xlink:href=&apos;#slick-arrow-prev&apos;></use></svg>",
+        "responsive": [
+            {
+                "breakpoint": 1281,
+                "settings": {
+                    "arrows": true,
+                    "slidesToScroll": 4,
+                    "slidesToShow": 4 
+                   
+                }
+            },
+            {
+                "breakpoint": 992,
+                "settings": {
+                    "arrows": false,
+                    "dots": true,
+                    "slidesToScroll": 3,
+                    "slidesToShow": 3
+                }
+            }, 
+            {
+                "breakpoint": 600,
+                "settings": {
+                    "arrows": false,
+                    "dots": true,
+                    "slidesToScroll": 2,
+                    "slidesToShow": 2
+                }
+            },
+            {
+                "breakpoint": 330,
+                "settings": {
+                    "arrows": false,
+                    "dots": true,
+                    "slidesToScroll": 1,
+                    "slidesToShow": 1
+                }
+            }
+        ]
+    }'>
+    {{#each products}}
+    <div class="productCarousel-slide product">
+        {{> components/products/card productsnew=../product_new_f theme_settings=../theme_settings customer=../customer show_rating=../settings.show_product_rating show_wishlist=../settings.show_wishlist event="list" position=(add @index 1)}}
+    </div>
+    {{/each}}
+</div>

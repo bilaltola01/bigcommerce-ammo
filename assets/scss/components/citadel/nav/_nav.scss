@@ -1,0 +1,331 @@
+// =============================================================================
+// NAV (CSS)
+// =============================================================================
+
+
+// Citadel inline messages
+// -----------------------------------------------------------------------------
+//
+// 1. Remove the margin-left we add to default lists.
+//
+// -----------------------------------------------------------------------------
+
+.navList,
+.navBar {
+    margin-left: 0; // 1
+}
+
+.navList-action,
+.navBar-action {
+    text-decoration: none;
+}
+
+.navList-action.is-active {
+    font-weight: $navList-action-fontWeight--active;
+}
+
+
+// NavList action checkbox
+// -----------------------------------------------------------------------------
+//
+// Purpose: Display a checkbox next to an actionable link, without actually using
+// a checkbox element.
+//
+// 1. Position checkbox so it is vertically centered
+//
+// -----------------------------------------------------------------------------
+
+.navList-action--checkbox {
+    @include checkRadioBase();
+    @include checkBox-base();
+
+    &:before,
+    &:after {
+        top: 50%; // 1
+    }
+
+    &:before {
+        margin-top: -$checkRadio-outerSize / 2;
+        border-radius: 0;
+    }
+
+    &:after {
+        margin-top: -$checkRadio-outerSize / 2 + remCalc(1);
+    }
+
+    &:focus {
+        @include checkRadioBase--focus();
+    }
+
+    &.is-disabled {
+        @include checkRadioBase--disabled();
+    }
+
+    &.is-checked,
+    &.is-selected {
+        @include checkRadioBase--checked();
+    }
+}
+
+
+// NavList action close
+// -----------------------------------------------------------------------------
+//
+.navList-action-close {
+    background: $navList-action-close-background;
+    border-radius: $navList-action-close-borderRadius;
+    display: inline-block;
+    float: right;
+    line-height: 0;
+    opacity: 0;
+    padding: $navList-action-close-padding;
+    transition: $navList-action-close-transition;
+    visibility: hidden;
+
+    .icon {
+        @include square($navList-action-close-iconSize);
+        fill: stencilColor("color-textLink");
+    }
+
+    .navList-action.is-selected:hover & {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+
+// Page Subnavigation
+// -----------------------------------------------------------------------------
+
+
+.navBar--sub {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+
+    .navBar-section {
+        display: block;
+        font-size: 0;
+        margin: 0;
+        width: auto;
+        float: none;
+        @media (max-width: 1024px){
+            display: block !important;
+            white-space: nowrap;
+            overflow-x: auto;
+            margin-left: 0;
+            border-radius: 3px;
+            margin-right: 0;
+            .navBar-item{
+                width: auto;
+                padding: 0;
+                &:first-child{
+                    border-top-left-radius: 0px;
+                    border-bottom-left-radius: 0px;
+                    > a{
+                        border-top-left-radius: 0px;
+                        border-bottom-left-radius: 0px;
+                        border-left: 0;
+                        border-right: 0;
+                    }
+                    &.is-active{
+                        border-right: 0;
+                        border-left: 0;
+                        border-bottom: none;
+                    }
+                }
+                &:last-child{
+                    border-top-right-radius: 0px;
+                    border-bottom-right-radius: 0px;
+                    padding-right: 0;
+                    > a {
+                        border-right: 0;
+                        border-top-right-radius: 0px;
+                        border-bottom-right-radius: 0px;
+                        border-left: 0;
+                    }
+                    &.is-active{
+                        border-right: 0;
+                        border-left: 0;
+                    }
+                }
+                > a {
+                    padding: 7px 42px;
+                    border-bottom: 1px solid #efefef;
+                }
+                &.is-active{
+                    padding: 7px 42px;
+                    border: 0;
+                    border-right: 1px solid #efefef;
+                    border-left: 1px solid #efefef;
+                }
+            }
+        }
+        @media (max-width: 480px){
+            display: block;
+            white-space: nowrap;
+            overflow-x: auto;
+            margin-left: 0;
+            .navBar-item{
+                width: auto;
+                &:first-child{
+                    padding-left: 0;
+                }
+                &:last-child{
+                    padding-right: 0;
+                }
+                > a {
+                    padding: 7px 40px;
+                }
+                &.is-active{
+                    padding: 7px 40px;
+                }
+            }
+        }
+    }
+    .navBar-item,
+    .navBar-item.navBar-item--separate {
+        border: none;
+        float: none;
+        padding: 0 8px;
+        color: #a0a0a0;
+        font-size: 12px;
+        line-height: 30px;
+        font-weight: 700;
+        border-spacing: 0px;
+        letter-spacing: 0;
+        width: 100%;
+        vertical-align: top;
+        display: inline-block;
+        transition: all 0.3s ease;
+        background-color: transparent;
+        font-family: $fontFamily-headings;
+        display: table-cell;
+        min-width: 192px;
+        vertical-align: middle;
+        background: #ffffff;
+        &:hover,
+        &.is-active {
+            background-color: #ffffff;
+            .navBar-action,
+            .toggleLink-text {
+                background-color: #ffffff;
+            }
+        }
+        &:first-child {
+            @media (min-width: 992px) {
+                border-radius: 0;
+                }
+            .navBar-action,
+            .toggleLink-text {
+                @media (min-width: 992px) {
+                    border-radius: 0;
+                }
+            }
+        }
+        &:last-child {
+            border-bottom: 1px solid #efefef;
+            border-left: 0;
+            border-right: 0;
+            border-top: 0;
+            @media (max-width: 768px){
+                border-bottom: 0;
+            }
+            @media (min-width: 992px) {
+                border-radius: 0;
+            }
+            .navBar-action,
+            .toggleLink-text {
+                @media (min-width: 992px) {
+                    border-radius: none;
+                }
+            }
+        }
+        .navBar-action,
+        .toggleLink-text {
+            padding: 9px 0 7px;
+            font-size: inherit;
+            font-weight: 700;
+            border: 0;
+            background-color: #fafafa;
+            border-right: 1px solid #efefef;
+            border-left: 1px solid #efefef;
+            > .toggleLink-text {
+                padding: 0;
+                border: none;
+            }
+            &.is-open {
+                color: stencilColor('color-textBase');
+            }
+        }
+    }
+    @media (min-width: 601px) {
+        .navBar-item,
+        .navBar-item.navBar-item--separate {
+            width: 33.333333%;
+        }
+    }
+    @media (min-width: 1025px) {
+        margin-bottom: 0px;
+        .navBar-section {
+            margin: 0;
+            width: 100%;
+            display: table;
+            // background: #ffffff;
+            border: 0;
+            border-radius: 0;
+            // border-collapse: collapse;
+        }
+        .navBar-item,
+        .navBar-item.navBar-item--separate {
+            padding: 0;
+            color: #000000;
+            font-size: 12px;
+            font-weight: 700;
+            display: table-cell;
+            min-width: 192px;
+            vertical-align: middle;
+            background: #ffffff;
+            border-right: 1px solid #efefef;
+            border-bottom: 1px solid #efefef;
+            &:hover,
+            &.is-active {
+                background-color: #ffffff;
+                .navBar-action,
+                .toggleLink-text {
+                    border: none;
+                    background-color: #ffffff;
+                }
+            }
+            .navBar-action,
+            .toggleLink-text {
+                border: none;
+            }
+        }
+    }
+    @media (min-width: 1281px) {
+        .navBar-item,
+        .navBar-item.navBar-item--separate {
+            min-width: 180px;
+        }
+    }
+}
+.account{
+    background: #ffffff;
+    padding: 30px 20px;
+    .form-column{
+        padding: 0;
+    }
+}
+// 
+.themevale_account{
+    .account-body{
+        .account-content{
+           .account-heading{
+                font-size: 13px;
+                font-weight: 700;
+                letter-spacing: 0;
+            } 
+        }
+    }
+}

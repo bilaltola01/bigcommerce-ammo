@@ -1,0 +1,13 @@
+{{#partial "page"}}
+<div class="page-heading-wrapper-2">
+	<div class="themevale_container">
+		{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+	</div>
+</div>
+<main class="page">
+    <div class="themevale_container">
+		{{> components/blog/post post=blog.post show_tags=true}}
+	</div>
+</main>
+{{/partial}}
+{{> layout/base}}

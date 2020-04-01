@@ -1,0 +1,48 @@
+<div class="pagination">
+    <ul class="pagination-list">
+        {{#if links}}
+        <li class="pagination-item item-page">
+            <span>Page:</span>
+        </li>
+        {{/if}}
+        {{#if previous}}
+            <li class="pagination-item pagination-item--previous">
+                <a class="pagination-link" href="{{previous}}" {{#unless reload}}data-faceted-search-facet{{/unless}}>
+                    <i class="icon" aria-hidden="true">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-down-top"></use>
+                        </svg>
+                    </i>
+                    <span>{{lang 'common.previous'}}</span>
+                </a>
+            </li>
+        {{/if}}
+        {{#each links}}
+            {{#if this.number '==' ../current}}
+                <li class="pagination-item pagination-item--current">
+                    <a class="pagination-link" href="{{this.url}}" {{#unless reload}}data-faceted-search-facet{{/unless}}>{{this.number}}</a>
+                </li>
+            {{else}}
+                <li class="pagination-item">
+                    <a class="pagination-link" href="{{this.url}}" {{#unless reload}}data-faceted-search-facet{{/unless}}>{{this.number}}</a>
+                </li>
+            {{/if}}
+        {{/each}}
+
+        {{#if next}}
+            <li class="pagination-item pagination-item--next">
+                <a class="pagination-link" href="{{next}}" {{#unless reload}}data-faceted-search-facet{{/unless}}>
+                    <span>{{lang 'common.next'}}</span>
+                    <i class="icon" aria-hidden="true">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-down-top"></use>
+                        </svg>
+                    </i>
+                </a>
+            </li>
+        {{/if}}
+    </ul>
+    <div class="compare-link">
+        <a class="btn" href="{{urls.compare}}" data-compare-nav><span class="title-compare">Compare Selected</span><span class="countPill countPill--positive countPill--alt"></span></a>
+    </div>
+</div>

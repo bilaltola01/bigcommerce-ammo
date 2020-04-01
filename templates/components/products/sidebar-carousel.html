@@ -1,0 +1,7 @@
+<div class="productCarousel">
+    {{#each products}}
+    <div class="productCarousel-slide">
+        {{> components/products/card-sidebar-sale theme_settings=../theme_settings customer=../customer show_rating=../settings.show_product_rating show_wishlist=../settings.show_wishlist productsnew=../productsnew}}
+    </div>
+    {{/each}}
+</div>

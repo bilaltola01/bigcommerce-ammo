@@ -1,0 +1,37 @@
+<nav>
+    <div id="halofilter"></div>
+    <script type="text/javascript">
+    var op = {
+        'site' : '00nwrptbipj6',
+        'class_list' : '.productGrid',
+        'cat' : '{{category.id}}',
+        'brand' : '{{brand.name}}',
+        'limit' : '{{theme_settings.categorypage_products_per_page}}',
+        'pro_new' : [{{#each products.new}}{{id}},{{/each}}],
+        };
+    </script>
+    <link rel="stylesheet" href="https://api.themevaleapps.com/assets/halofilter.css" type="text/css" >
+    <script type='text/javascript' src='https://api.themevaleapps.com/assets/halofilter.min.js'></script>
+    <!-- All categories -->
+    {{> components/themevale/sidebar/side-all-categories}}
+    <!-- Shop by price -->
+    {{#if category.faceted_search_enabled}}
+        {{> components/faceted-search/index category}}
+    {{else}}
+        {{> components/category/shop-by-price shop_by_price=category.shop_by_price category_url=category.url}}
+        
+        {{#if shop_by_brand}}
+            {{> components/themevale/sidebar/side-shop-by-brand}}
+        {{/if}}
+
+        {{#if products.top_sellers}}
+            {{> components/products/top-sidebar products=products.top_sellers products_new=products.new}}
+        {{/if}}
+
+        {{#if products.featured}}
+            {{> components/products/feature-sidebar products=products.featured products_new=products.new}}
+        {{/if}}
+
+        {{> components/themevale/side-custom-block}}
+    {{/if}}
+</nav>

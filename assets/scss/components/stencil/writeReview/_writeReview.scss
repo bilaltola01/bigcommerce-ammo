@@ -1,0 +1,149 @@
+// =============================================================================
+// WRITE A REVIEW (CSS)
+// =============================================================================
+
+#modal-review-form{
+    .modal-content{
+        overflow: visible;
+    }
+    .modal-header{
+        background: #f5f5f5;
+        border-bottom: 1px solid #dddddd;
+        border-bottom-left-radius: none;
+        border-bottom-right-radius: none;
+        @media (min-width: 415px){
+            padding: 13px 30px;
+        }
+        .modal-header-title{
+            color: #000000;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+    } 
+}
+.writeReview-productDetails {
+    padding: 0;
+    display: block;
+    margin-bottom: 30px;
+    .product-brand {
+        margin: 0;
+        color: #808080;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 30px;
+        text-transform: unset;
+        text-align: center;
+
+    }
+    .product-title {
+        margin: 0;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 20px;
+        text-transform: capitalize;
+        color: #2465c6;
+        text-align: center;
+    }
+    @media (min-width: 601px) {
+        width: 45%;
+        padding-left: 0;
+        padding-right: 10px;
+        float: left;
+        .product-brand {
+            margin: 0 0 5px 0;
+        }
+    }
+    @media (min-width: 768px) {
+        width: 50%;
+        padding-left: 0;
+        padding-right: 20px;
+        float: left;
+    }
+}
+
+
+.writeReview-form {
+    padding: 0;
+    display: block;
+    textarea.form-input {
+        min-height: 150px;
+    }
+    .button {
+        min-width: 180px;
+       color: white;
+        border: 1px solid transparent;
+        background-color: #5b5b5b;
+        background: linear-gradient(to bottom, #5b5b5b 0, #777877 100%);
+        &:hover{
+            color: black;
+            border: 1px solid #a0a0a0;
+            background: linear-gradient(to bottom, #f7f7f7 0, #fdfefe 100%);
+        }
+    }
+    .form-label{
+        font-size: 12px;
+        font-weight: 600;
+        color: #000000;
+        > small{
+            color: #b8b8b8;
+        }
+        span{
+            color: #e3594d;
+            margin-right: 3px;
+        }
+
+    }
+    .form-input, .form-select{
+        height: 38px;
+        line-height: 14px;
+        font-size: 12px;
+    }
+    .form-select{
+        background-size: 34px;
+        background-position: right 0px center;
+    }
+    @media (min-width: 601px) {
+        width: 55%;
+        padding-right: 0;
+        padding-left: 10px;
+        float: left;
+        .button {
+            min-width: 173px;
+            padding: 5px 15px;
+        }
+    }
+    @media (min-width: 768px) {
+        width: 50%;
+        padding-right: 0;
+        padding-left: 20px;
+        float: left;
+    }
+    .form-input, .form-select, .form-label {
+        @media (max-width: 380px) {
+            width: 98%;
+        }
+        @media (max-width: 360px) {
+            width: 90%;
+        }
+        
+    }
+}
+#modal-review-form{
+    @media (max-width: 330px){
+        // padding: 15px;
+    }
+}
+
+.writeReview-productImage-container {
+    position: relative;
+    margin-bottom: 15px;
+    img {
+        @include lazy-loaded-img;
+    }
+    @include lazy-loaded-padding('product_size');
+    @media (min-width: 601px) {
+        margin-bottom: 20px;
+    }
+}

@@ -1,0 +1,307 @@
+// =============================================================================
+// PAGINATION (CSS)
+// =============================================================================
+
+
+// Pagination list items
+// -----------------------------------------------------------------------------
+//
+// 1. Centred list via inline-block. Font-size: 0; to remove white-space.
+// 2. Specificity overrides for Foundation's inadequate selectors.
+//
+// -----------------------------------------------------------------------------
+
+.pagination-list {
+    @include clearfix;
+
+    font-size: 0; // 1
+    margin-bottom: spacing("single");
+    text-align: center;
+    position: relative;
+    display: flex;
+    margin-bottom: 0;
+    justify-content: left;
+
+    .pagination-item { // 2
+        display: inline-block;
+        line-height: 8px;
+        margin: 0 10px;
+        &:first-child{
+            span{
+                color: #000000;
+                font-weight: bold;
+                line-height: 18px;
+                font-size: 12px;
+            }
+        }
+    }
+    li {
+        margin-left: 10px;
+        a{
+            &:hover{
+                color: #2465c6;
+                font-weight: bold;
+                border-bottom: 1px solid #2465c6;
+                i{
+                    >svg{
+                        &:hover{
+                            fill: #2465c6;
+                        }
+                    }
+                }
+            }
+            i{
+                >svg{
+                    fill: #000000;
+                    width: 8px;
+                }
+            }
+        }
+    }
+
+    .pagination-item--previous {
+        >a{
+            color: #000;
+            font-size: 12px;
+            text-transform: capitalize;
+            font-weight: 600;
+            margin-top: 1px;
+            i{
+                svg{
+                    transform: rotate(90deg);
+                }
+            }
+
+        }
+    }
+
+    .pagination-item--next {
+        >a{
+            padding-left: 13px;
+            color: #000;
+            font-size: 12px;
+            text-transform: capitalize;
+            font-weight: 600;
+            margin-top: 1px;
+            i{
+                svg{
+                    transform: rotate(270deg);
+                }
+            }
+        }
+    }
+}
+
+
+// Pagination list items
+// -----------------------------------------------------------------------------
+//
+// 1. Specificity overrides for Foundation's inadequate selectors.
+//
+// -----------------------------------------------------------------------------
+.product-pagination {
+    width: 100%;
+    padding: 21px 0;
+    border-top: 1px solid #efefef;
+    position: relative;
+    text-align: left;
+    margin-top: 0;
+    background: #ffffff;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+    -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+    -ms-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    .compare-link {
+        display: inline-block;
+        margin-top: 30px;
+        @media (max-width: 1024px){
+            display: none !important;
+        }
+    }
+    @include breakpoint('small') {
+        .compare-link {
+            margin-top: 0;
+            top: 50%;
+            right: 20px;
+            display: block;
+            position: absolute;
+            transform: translateY(-50%);
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+            -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+            -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+            -ms-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
+        }
+        .pagination-info {
+            margin-top: 0;
+            top: 50%;
+            left: 0;
+            display: block;
+            position: absolute;
+            transform: translateY(-50%);
+            color: #464646;
+            font-size: 12px;
+        }
+    }
+    @media (max-width: 480px){
+        .pagination-info {
+            margin-top: 0;
+            top: 50%;
+            left: 0;
+            display: block;
+            transform: translateY(-50%);
+            color: #464646;
+            font-size: 12px;
+        }
+    }
+    
+}
+.pagination {
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    position: relative;
+    z-index: 9;
+    display: block;
+    border-radius: none;
+    margin-left: 20px;
+}
+
+.pagination-item {
+    border: none;
+    line-height: 1;
+
+    .pagination-link {
+        color: #585858;
+        text-decoration: none;
+        // transition: $pagination-link-transition;
+        text-align: center;
+        letter-spacing: 0;
+        font-size: 12px;
+        font-weight: 400;
+        padding: 6px 0 3px 0;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        border-radius: 0;
+        &:before {
+            // content: "";
+            left: 0;
+            bottom: 0;
+            height: 1px;
+            width: 0px;
+            background-color: #646464;
+            transition: all 0.3s ease;
+            position: absolute;
+        }
+        // scss-lint:disable NestingDepth
+        &:hover {
+            // color: $pagination-link-color-hover;
+            &:before {
+                width: 100%;
+            }
+        }
+    }
+
+    &.pagination-item--current { // 1
+        border-radius: 0;
+        // color: $pagination-link-color;
+        // margin: $pagination-link-current-margin;
+        > a{
+            color: #2465c6;
+            font-weight: 600;
+            padding: 5px 0 3px 0;
+            border-bottom: 1px solid #2465c6;
+        }
+        .pagination-link:before {
+            width: 100%;
+        }
+    }
+
+    &.pagination-item--previous, // 1
+    &.pagination-item--next { // 1
+        > a {
+            padding-left: 13px;
+            padding-right: 20px;
+            padding: 0;
+            color: #000000;
+            width: auto;
+            &:before {
+                width: 100%;
+            }
+            &:hover {
+                // color: $pagination-item-previousNext-color-hover;
+
+                .icon > svg {
+                    // fill: $pagination-item-previousNext-color-hover;
+                }
+            }
+        }
+    }
+}
+
+.pagination-item--previous,
+.pagination-item--next {
+
+    .icon {
+        // height: remCalc(20px);
+        // margin-top: -(remCalc(2px));
+        // width: remCalc(20px);
+    }
+}
+
+.pagination-item--previous {
+    float: left;
+
+    .icon {
+        margin-left: -(remCalc(12px));
+        margin-top: 0px;
+    }
+}
+
+.pagination-item--next {
+    float: right;
+
+    .icon {
+        margin-right: -(remCalc(12px));
+        margin-top: 0px;
+    }
+}
+
+
+// Simple/small pagination (Next/Previous arrows are the only way to navigate)
+// -----------------------------------------------------------------------------
+
+.pagination-list--small {
+    position: relative;
+
+    .pagination-item {
+        // color: $pagination-list--small-color;
+        cursor: inherit;
+        // line-height: $pagination-list--small-lineHeight;
+    }
+
+    .pagination-link {
+        // padding: $pagination-list--small-link-padding;
+    }
+
+    // .pagination-item--previous,
+    // .pagination-item--next {
+    //     position: absolute;
+    //     top: 0;
+    // }
+
+    // .pagination-item--previous {
+    //     left: 0;
+    // }
+
+    // .pagination-item--next {
+    //     right: 0;
+    // }
+}

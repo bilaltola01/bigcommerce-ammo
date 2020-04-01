@@ -1,0 +1,231 @@
+<div id="top-bar-promotion">
+    <div class="themevale_container">
+        <div class="banner">
+            <p class="banner-header-top">America's #1 Source for Online Ammo</p>
+            <a href="javascript:void(0)" class="close">×</a>
+        </div>
+    </div>
+</div>
+<header class="header">
+    <div class="themevale_topHeader-main">
+        <div class="themevale_topHeader">
+                <div class="topHeader-item text-left">
+                    <div class="items items-left-topHeader">
+                        <p><span>(800)-851-2599</span> * Need Help?</p>
+                    </div>
+                </div>
+                <div class="topHeader-item text-right">
+                    <div class="items">
+                        {{> components/common/currency-selector}}
+                    </div>
+                    
+
+                    <div class="items item--account">
+                        {{#if customer}}
+                             <a class="navUser-action account-icon navUser-action--account" href="{{urls.account.index}}">
+                                <span class="navUser-text">{{lang 'common.account'}}</span>
+                            </a>
+                            <ul class="dropdown-menu-account" id="navPages-account-topbar">
+                                <li class="dropdown-menu-item">
+                                    <a href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a>
+                                </li>
+                                {{#if settings.returns_enabled}}
+                                    <li class="dropdown-menu-item">
+                                        <a href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a>
+                                    </li>
+                                {{/if}}
+                                <li class="dropdown-menu-item">
+                                    <a href="{{urls.account.inbox}}">{{lang 'account.mobile_nav.messages'}}</a>
+                                </li>
+                                <li class="dropdown-menu-item">
+                                    <a href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}</a>
+                                </li>
+                               <!--  {{#if settings.show_payment_methods}}
+                                    <li class="dropdown-menu-item">
+                                        <a href="{{urls.account.payment_methods.all}}">Payment Methods</a>
+                                    </li>
+                                {{/if}} -->
+                                <li class="dropdown-menu-item">
+                                    <a href="{{urls.account.wishlists.all}}">{{lang 'account.mobile_nav.wishlists'}}</a>
+                                </li>
+                                <li class="dropdown-menu-item">
+                                    <a href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a>
+                                </li>
+                                <li class="dropdown-menu-item">
+                                    <a href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a>
+                                </li>
+                            </ul>
+                        {{else}}
+                            <a class="navUser-action account-icon" href="{{urls.auth.login}}">
+                                <span class="navUser-text">{{lang 'common.account'}}</span>
+                            </a>
+                        {{/if}}
+                    </div>
+                    <div class="items item--wishlist">
+                        <a class="navUser-action" href="{{urls.account.wishlists.all}}">
+                            <span class="navUser-text">{{lang 'common.wishlist'}}</span>
+                        </a>
+                    </div>
+                    <div class="items themevale_gift_certificate">
+                        <a class="navUser-action" href="{{urls.gift_certificate.purchase}}">
+                            <span class="navUser-text">{{lang 'common.gift_cert'}}</span>
+                        </a>
+                    </div>
+                    <div class="items items-login-right-top-Header">
+                        {{#if customer}}
+                            <a class="account-name" href="{{urls.account.index}}">{{customer.name}} , </a>
+                            <a class="active-dropdown-distable" href="{{urls.auth.logout}}"><span>{{lang 'common.logout'}}</span></a>
+                        {{else}}
+                            <a class="active-dropdown navUser-action" href="{{urls.auth.login}}"><span class="navUser-text"">Sign In or Create An Account</span></a>
+                        {{/if}}
+                    </div>
+                   
+                   
+                </div>
+        </div>
+    </div>
+
+    <div class="themevale_middleHeader">
+        <div class="middleHeader-container">
+            <div class="middleHeader-item text-left">
+                <div class="items item--hamburger">
+                    <a class="mobileMenu-toggle" href="#" data-mobile-menu-toggle="menu">
+                        <span class="mobileMenu-toggleIcon">Toggle menu</span>
+                    </a>
+                </div>
+                <div class="items item--searchMobile">
+                    <a class="navUser-action" href="#" data-search="quickSearch" aria-controls="quickSearch" aria-expanded="false">
+                        <div class="navUser-icon">
+                            <svg class="icon"><use xlink:href="#icon-search"></use></svg>
+                        </div>
+                        <span class="navUser-text">{{lang 'common.search'}}</span>
+                    </a>
+                </div>
+            </div>
+            <div class="middleHeader-item text-center">
+                <div class="items item--logo">
+                    {{#if page_type '===' 'default'}}
+                        <h1 class="header-logo">
+                            {{> components/common/store-logo}}
+                        </h1>
+                    {{else}}
+                        <div class="header-logo">
+                            {{> components/common/store-logo}}
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="middleHeader-item text-right">
+                <div class="items item--quicksearch">
+                    <div class="dropdown dropdown--quickSearch themevale_search" id="quickSearch" aria-hidden="true" tabindex="-1" data-prevent-quick-search-close>
+                        {{> components/common/quick-search}}
+                    </div>
+                </div>
+                 <div class="items item--account">
+                    {{#if customer}}
+                         <a class="navUser-action account-icon navUser-action--account" href="{{urls.account.index}}">
+                            <div class="navUser-icon">
+                                <svg class="icon"><use xlink:href="#userr"/></svg>
+                            </div>
+                            <span class="navUser-text">{{lang 'common.account'}}</span>
+                        </a>
+                        <ul class="dropdown-menu-account" id="navPages-account-topbar">
+                            <li class="dropdown-menu-item">
+                                <a href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a>
+                            </li>
+                            {{#if settings.returns_enabled}}
+                                <li class="dropdown-menu-item">
+                                    <a href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a>
+                                </li>
+                            {{/if}}
+                            <li class="dropdown-menu-item">
+                                <a href="{{urls.account.inbox}}">{{lang 'account.mobile_nav.messages'}}</a>
+                            </li>
+                            <li class="dropdown-menu-item">
+                                <a href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}</a>
+                            </li>
+                           <!--  {{#if settings.show_payment_methods}}
+                                <li class="dropdown-menu-item">
+                                    <a href="{{urls.account.payment_methods.all}}">Payment Methods</a>
+                                </li>
+                            {{/if}} -->
+                            <li class="dropdown-menu-item">
+                                <a href="{{urls.account.wishlists.all}}">{{lang 'account.mobile_nav.wishlists'}}</a>
+                            </li>
+                            <li class="dropdown-menu-item">
+                                <a href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a>
+                            </li>
+                            <li class="dropdown-menu-item">
+                                <a href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a>
+                            </li>
+                        </ul>
+                    {{else}}
+                        <a class="navUser-action account-icon" href="{{urls.auth.login}}">
+                            <div class="navUser-icon">
+                                <svg class="icon"><use xlink:href="#userr"/></svg>
+                            </div>
+                            <span class="navUser-text">{{lang 'common.account'}}</span>
+                        </a>
+                    {{/if}}
+                </div>
+                <div class="items cart-right top-cart navUser-item--cart">
+                        <a
+                            class="navUser-action"
+                            data-cart-preview
+                            data-options="align:right"
+                            href="{{urls.cart}}">
+                            <div class="navUser-item-cartIcon navUser-icon">
+                                <svg class="icon"><use xlink:href="#icon-cart"></use></svg>
+                                <span class="navUser-item-cartLabel">My Cart</span>
+                                <span class="countPill countPill--positive cart-quantity">{{#if cart.items}}{{cart.quantity}}{{else}}0{{/if}}</span>
+                            </div>
+                        </a>
+                        <div class="dropdown-cart" id="cart-preview-dropdown" aria-hidden="true"></div>
+                    </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    {{{region name="header_bottom"}}}
+    <div class="navPages-container themevale_container menu-category">
+        {{> components/themevale/sidebar/side-all-categories}}
+        <div class="themevale_navPages-item text-left">
+            {{#if page_type '===' 'default'}}
+                <h1 class="header-logo">
+                    {{> components/common/store-logo}}
+                </h1>
+            {{else}}
+                <div class="header-logo">
+                    {{> components/common/store-logo}}
+                </div>
+            {{/if}}
+        </div> 
+        <div class="themevale_navPages-item" id="menu" data-menu>
+            {{> components/common/navigation-menu}}
+        </div>
+        <div class="themevale_navPages-item text-right">
+            <div class="items">
+                <a class="navPages-icon" href="#" data-search="quickSearch" aria-controls="quickSearch" aria-expanded="false">
+                    <span class="text-hidden">search icon</span>
+                    <svg class="icon"><use xlink:href="#icon-search"></use></svg>
+                </a>
+            </div>
+            <div class="items navUser-item--cart top-cart">
+                <a
+                    class="navPages-icon"
+                    data-cart-preview
+                    data-options="align:right"
+                    href="{{urls.cart}}">
+                    <span class="text-hidden">cart icon</span>
+                    <div class="navUser-item-cartIcon">
+                        <svg class="icon"><use xlink:href="#icon-cart"></use></svg><span class="countPill countPill--positive cart-quantity">{{#if cart.items}}{{cart.quantity}}{{else}}0{{/if}}</span>
+                    </div>
+                </a>
+                <div class="dropdown-cart" id="cart-preview-dropdown2" aria-hidden="true"></div>
+            </div>
+        </div>
+    </div>
+</header>

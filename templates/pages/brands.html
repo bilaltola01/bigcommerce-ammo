@@ -1,0 +1,57 @@
+---
+brands:
+    limit: {{theme_settings.brandpage_brands_per_page}}
+---
+{{#partial "page"}}
+<div class="page-heading-wrapper-2">
+    <div class="themevale_container">
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    <h1 class="page-heading">{{lang 'brand.label'}}</h1>
+</div>
+</div>
+<main class="page">
+    <div class="themevale_container">
+        {{#if theme_settings.themevale_brandlayout '===' 'aztable'}}
+            <div class="content-brand">
+                <ul id="azBrandsTable" class="azBrands-table"></ul>
+                <div id="azBrands" class="azBrands"></div>
+
+                <ul class="brandList hide" data-brands-list data-brands-list-next="{{pagination.brands.next}}" data-azbrands="azBrands">
+                    {{#each brands}}
+                        <li class="brand" data-brand-code="{{dashcase name}}">
+                            <article class="brand-name">
+                                <h4 class="title">
+                                    <a href="{{url}}">{{name}}</a>
+                                </h4>
+                            </article>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+        {{else}}
+            <ul class="brandGrid">
+                {{#each brands}}
+                    <li class="brand">
+                        <article class="card {{#if alternate}}card--alternate{{/if}}">
+                            <figure class="card-figure">
+                                <a href="{{url}}">
+                                    <div class="card-img-container">
+                                        <img class="card-image lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'brand_size' (cdn ../theme_settings.default_image_brand)}}" alt="{{name}}" title="{{name}}">
+                                    </div>
+                                </a>
+                            </figure>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="{{url}}">{{name}}</a>
+                                </h4>
+                            </div>
+                        </article>
+                    </li>
+                {{/each}}
+            </ul>
+            {{> components/common/paginator pagination.brands}}
+        {{/if}}
+    </div>
+</main>
+{{/partial}}
+{{> layout/base}}

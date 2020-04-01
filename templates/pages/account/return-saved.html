@@ -1,0 +1,21 @@
+{{#partial "page"}}
+<div class="page-heading-wrapper-2">
+	<div class="themevale_container">
+	    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+	    <h2 class="page-heading">{{lang 'account.returns.heading' }}</h2>
+	</div>
+</div>
+<div class="page">
+    <div class="themevale_container">
+	    {{> components/account/navigation account_page='returns'}}
+        <div class="account themevale_account">
+		    <div class="account-row">
+		        <p>
+		            {{lang 'account.returns.successful'}}
+		        </p>
+		    </div>
+		</div>
+	</div>
+</div>
+{{/partial}}
+{{> layout/base}}

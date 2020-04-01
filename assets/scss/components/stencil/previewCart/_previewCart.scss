@@ -1,0 +1,229 @@
+// =============================================================================
+// PREVIEW CART (CSS)
+// =============================================================================
+//
+// 1. Override server-generated inline-css
+//
+// -----------------------------------------------------------------------------
+
+
+/*=========================================
+=            www.themevale.com            =
+=========================================*/
+
+    /*--------  1.0 Product view  -------*/
+
+        .previewCart {
+            width: 100%;
+            vertical-align: top;
+            display: inline-block;
+            .productView {
+                padding: 0;
+                font-size: 0;
+                display: block;
+                margin: 30px 0 0 0;
+                @media (max-width: 480px){
+                    margin: 0;
+                }
+            }
+            .previewCartCheckout {
+                display: block;
+                font-size: 12px;
+                max-width: 400px;
+                padding: 20px;
+                margin: 0 auto;
+                text-align: center;
+                background-color: #fafafa;
+                p{
+                    color: #565656;
+                }
+            }
+            .productView-image {
+                width: 37%;
+                padding: 0;
+                display: inline-block;
+                vertical-align: top;
+            }
+            .productView-details {
+                width: 63%;
+                margin-bottom: 0;
+                padding-left: 15px;
+                font-size: $body-fontSize;
+                display: inline-block;
+                vertical-align: top;
+                .productView-brand {
+                    color: #808080;
+                    font-size: 12px;
+                    font-weight: 400;
+                    line-height: 20px;
+                    text-transform: unset;
+                    margin-bottom: 4px;
+                    text-underline-position: under;
+                    font-family: $fontFamily-headings;
+                }
+                .productView-title {
+                    font-size: 12px;
+                    font-weight: 700;
+                    line-height: 20px;
+                    margin-bottom: 15px;
+                    font-family: $fontFamily-sans;
+                    color: #2465c6;
+                    margin-top: 0;
+                }
+                .productView-info {
+                    margin-bottom: 0px;
+                    .productView-info-name {
+                        min-width: 100px;
+                        @media (min-width: 1025px){
+                            min-width: 140px;
+                        }
+                    }
+                    .productView-info-value {
+                        text-transform: capitalize;
+                    }
+                }
+                .productView-price {
+                    font-size: 16px;
+                    line-height: 20px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    font-family: $fontFamily-headings;
+                    color: #000000;
+                    margin: 0 0 18px;
+                    display: inline-block;
+                    width: 100%;
+                    .qty {
+                        color: #505050;
+                        font-weight: 400;
+                    }
+                }
+            }
+            @media (min-width: 381px) {
+                .previewCartCheckout {
+                    padding: 30px;
+                }
+            }
+            @media (min-width: 768px) {
+                .productView {
+                    margin: 0;
+                    width: 60%;
+                    float: left;
+                    padding: 0 30px 0 0;
+                }
+                .previewCartCheckout {
+                    width: 40%;
+                    margin: 0;
+                    padding: 0;
+                    float: right;
+                    max-width: none;
+                    background-color: transparent;
+                }
+                .productView-image {
+                    width: 30%;
+                }
+                .productView-details {
+                    width: 70%;
+                    padding-left: 15px;
+                }
+            }
+            @media (min-width: 993px) {
+                .productView {
+                    width: 67%;
+                    padding: 0 50px 0 0;
+                }
+                .previewCartCheckout {
+                    width: 33%;
+                }
+                .productView-image {
+                    width: 37%;
+                }
+                .productView-details {
+                    width: 63%;
+                    padding-left: 30px;
+                }
+            }
+            @media (min-width: 1025px) {
+                .previewCartCheckout {
+                    padding: 6px 10px;
+                }
+                .productView-details {
+                    padding-top: 0;
+                }
+            }
+        }
+
+    /*--------  2.0 Cart checkout  ------*/
+        .previewCartCheckout {
+            text-align: center;
+            .button {
+                width: 100%;
+                line-height: 26px;
+                padding: 11px 0;
+                font-size: 14px;
+                + .button {
+                    margin-left: 0;
+                }
+            }
+            .button--primary {
+                margin-bottom: 0;
+            }
+            .button-transparent {
+                color: #000000;
+                font-weight: 700;
+                padding: 5px 15px;
+                line-height: 24px;
+                border-radius: 3px;
+                text-transform: uppercase;
+                border: 1px solid #000000;
+                font-size: 12px;
+                &:hover, &:focus, &:active {
+                    border: 1px solid #c1c1c1;
+                }
+                @media (min-width: 1025px) {
+                    &:hover, &:focus, &:active {
+                        color: #ffffff;
+                        border: 1px solid #323232;
+                        svg {
+                            fill: #ffffff;
+                        }
+                    }
+                }
+            }
+            .previewCartAction-checkoutMultiple {
+                padding: 10px 0 0 0;
+                > a {
+                    color: stencilColor('color-textBase');
+                    border-bottom: 0;
+                }
+            }
+        }
+
+        .previewCartCheckout-additionalCheckoutButtons {
+            p {
+                display: block;
+                margin: 5px 0;
+                float: none !important;
+            }
+        }
+
+        .previewCartCheckout-subtotal {
+            margin: 15px 0 15px 0;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border-top: 1px solid #dbdbdb;
+            border-bottom: 1px solid #dbdbdb;
+            color: #505050;
+            .previewCartCheckout-price {
+                display: block;
+                font-size: 24px;
+                line-height: 30px;
+                font-weight: 700;
+                text-transform: uppercase;
+                font-family: $fontFamily-headings;
+                color: #000000;
+                margin-top: 5px;
+            }
+           
+        }
+
+/*=====  End of www.themevale.com  ======*/
